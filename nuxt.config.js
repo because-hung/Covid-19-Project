@@ -1,3 +1,5 @@
+const bodyParser = require('body-parser')
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -31,6 +33,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/axios'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -39,5 +42,9 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+  serverMiddleware:[
+    bodyParser.json(),
+    '~/api'
+  ]
 }
