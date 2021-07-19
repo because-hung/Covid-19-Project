@@ -45,6 +45,7 @@ export default {
   },
   serverMiddleware:[
     bodyParser.json(),
+    bodyParser.urlencoded({extended: true}),
     '~/api'
   ]
 }
