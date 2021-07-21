@@ -1,5 +1,14 @@
 const bodyParser = require('body-parser')
 
+const routerBase =
+  process.env.DEPLOY_ENV === 'GH_PAGES'
+    ? {
+        router: {
+          base: 'Covid'
+        }
+      }
+    : {}
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -38,7 +47,16 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
   ],
+  axios: {
+    proxy: true
+    // baseURL: 'http://localhost:3000', // Used as fallback if no runtime config is provided
+  },
+  devServer: {
+  proxy: 'https://covid-19.nchc.org.tw/'
+},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
@@ -47,5 +65,9 @@ export default {
     bodyParser.json(),
     bodyParser.urlencoded({extended: true}),
     '~/api'
-  ]
+  ],
+  router: {
+    base: 'Covid'
+  },
+  ...routerBase
 }

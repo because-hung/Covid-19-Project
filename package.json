@@ -1,12 +1,15 @@
 {
-  "name": "Covid-19",
+  "name": "Covid",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "build:gh-pages": "cross-env DEPLOY_ENV=GH_PAGES nuxt build",
+    "generate:gh-pages": "cross-env DEPLOY_ENV=GH_PAGES nuxt generate",
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
@@ -17,7 +20,10 @@
     "nuxt": "^2.15.7"
   },
   "devDependencies": {
+    "@nuxtjs/proxy": "^2.1.0",
     "@nuxtjs/tailwindcss": "^4.2.0",
-    "postcss": "^8.3.5"
+    "cross-env": "^7.0.3",
+    "postcss": "^8.3.5",
+    "push-dir": "^0.4.1"
   }
 }

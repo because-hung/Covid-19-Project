@@ -6,13 +6,15 @@
 </template>
 
 <script>
+// import axios from 'axios'
+// import res from '../api/Covid.json'
 export default {
   methods: {
     async getCovidCountry () {
       try {
         const limited = '全部縣市'
         // const limited = '台中市'
-        const res = await this.$axios.$get(`http://localhost:3000/api/covidCountry?limited=${limited}`)
+        const res = await this.$axios.$get(`http://localhost:64400/api/covidCountry?limited=${limited}`)
         console.log('res: ', res);
       } catch (error) {
         console.log('error: ', error)
@@ -21,7 +23,7 @@ export default {
     },
     async getCovidVaccine () {
             try {
-        const res = await this.$axios.$get('http://localhost:3000/api/covidVaccine')
+        const res = await this.$axios.$get('http://localhost:64400/api/covidVaccine')
         console.log('res: ', res);
       } catch (error) {
         console.log('error: ', error)
