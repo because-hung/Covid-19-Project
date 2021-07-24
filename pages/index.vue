@@ -3,6 +3,7 @@
     <button class="m-16" @click="getCovidCountry">get getCovidCountry 全部縣市</button>
     <button class="m-16" @click="getCovidVaccine">get getCovidVaccine 各縣市疫苗接種率</button>
     <h1>test heroku</h1>
+    <h2>hello heroku</h2>
   </div>
 </template>
 
