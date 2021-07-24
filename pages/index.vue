@@ -15,7 +15,7 @@ export default {
       try {
         const limited = '全部縣市'
         // const limited = '台中市'
-        const res = await this.$axios.$get(` https://because-hung.github.io/api/covidCountry?limited=${limited}`)
+        const res = await this.$axios.$get(` https://covid-nuxt-project.herokuapp.com/api/covidCountry?limited=${limited}`)
         console.log('res: ', res);
       } catch (error) {
         console.log('error: ', error)
@@ -24,7 +24,7 @@ export default {
     },
     async getCovidVaccine () {
             try {
-        const res = await this.$axios.$get(' https://because-hung.github.io/api/covidVaccine')
+        const res = await this.$axios.$get(' https://covid-nuxt-project.herokuapp.com/api/covidVaccine')
         console.log('res: ', res);
       } catch (error) {
         console.log('error: ', error)
