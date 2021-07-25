@@ -38,16 +38,18 @@ export default {
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
+  target: 'server',
+
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
     '@nuxtjs/axios'
   ],
-  // server: {     
-  //   port: 3000, // default: 3000     
-  //   host: '0.0.0.0', // default: localhost   
-  // },
+  server: {     
+    port: 3000, // default: 3000     
+    host: '0.0.0.0', // default: localhost   
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
