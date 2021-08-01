@@ -72,8 +72,5 @@ export default {
     bodyParser.urlencoded({extended: true}),
     '~/api'
   ],
-  router: {
-    base: 'Covid'
-  },
   ...routerBase
 }
