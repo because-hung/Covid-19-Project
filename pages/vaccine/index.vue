@@ -1,9 +1,10 @@
 <template>
-  <div>
-    <button class="m-16" @click="getCovidCountry">get getCovidCountry 全部縣市</button>
-    <button class="m-16" @click="getCovidVaccine">get getCovidVaccine 各縣市疫苗接種率</button>
-    <h1>test heroku</h1>
-    <h2>hello heroku</h2>
+  <div class="container mx-auto">
+    <div class="content border-2 border-red-300 grid grid-rows-1 grid-cols-4 gap-20 py-16 px-8">
+      <div class="VaccineCard border-2 border-blue-300 bg-white p-4" v-for="(item, i) in data" :key="i">
+         123
+      </div>
+    </div>
   </div>
 </template>
 
@@ -11,32 +12,39 @@
 // import axios from 'axios'
 // import res from '../api/Covid.json'
 export default {
-  methods: {
-    async getCovidCountry () {
-      try {
-        const limited = '全部縣市'
-        // const limited = '台中市'
-        const res = await this.$axios.$get(`http://localhost:3000/api/covidCountry?limited=${limited}`)
-        console.log('res: ', res);
-      } catch (error) {
-        console.log('error: ', error)
-      }
-      // const api = ''
-    },
-    async getCovidVaccine () {
-            try {
-        const res = await this.$axios.$get('http://localhost:3000/api/covidVaccine')
-        console.log('res: ', res);
-      } catch (error) {
-        console.log('error: ', error)
-      }
+  data() {
+    return {
+      data: [],
+      timecode: "",
     }
-  }
+  },
+  methods: {
+    async getCovidVaccine() {
+      try {
+        const self = this
+        const res = await this.$axios.$get(
+          "http://localhost:3000/api/covidVaccine"
+        )
+        self.timecode = res.data[0].a01
+        console.log("time: ", self.timecode)
+        const filteredData = res.data.filter(item => {
+          return item.a01 == self.timecode
+        })
+        self.data = filteredData
+        console.log("data: ", self.data)
+      } catch (error) {
+        console.log("error: ", error)
+      }
+    },
+  },
+  created() {
+    this.getCovidVaccine()
+  },
 }
 </script>
 
 <style>
-button{
+button {
   border: 3px solid black;
 }
 </style>
