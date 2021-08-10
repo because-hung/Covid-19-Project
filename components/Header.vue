@@ -17,7 +17,7 @@
                         <nuxt-link to="./"><button class="bg-white py-4 px-16 rounded-t-xl  font-bold border-white">
                             全球疫情狀況
                         </button></nuxt-link>
-                        <nuxt-link to="./taiwan"><button class="bg-white py-4 px-16 rounded-t-xl mx-2  font-bold border-white">
+                        <nuxt-link to="./taiwan"><button class="bg-white py-4 px-16 rounded-t-xl mx-3  font-bold border-white">
                             台灣各地區狀況
                         </button></nuxt-link>
                         <nuxt-link to="./vaccine"><button class="bg-white py-4 px-16 rounded-t-xl  font-bold border-white">

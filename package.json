@@ -27,11 +27,14 @@
   },
   "devDependencies": {
     "@nuxtjs/proxy": "^2.1.0",
+    "@nuxtjs/style-resources": "^1.2.1",
     "@nuxtjs/tailwindcss": "^4.2.0",
     "cross-env": "^7.0.3",
+    "node-sass": "^6.0.1",
     "postcss": "^8.3.5",
     "prettier": "^2.3.2",
     "prettier-eslint": "^13.0.0",
-    "push-dir": "^0.4.1"
+    "push-dir": "^0.4.1",
+    "sass-loader": "^10.2.0"
   }
 }
