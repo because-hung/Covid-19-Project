@@ -1,7 +1,6 @@
 <template>
   <div>
-       <button class="m-16" @click="getCovidCountry">get getCovidCountry 全部縣市</button>
-    <button class="m-16" @click="getCovidVaccine">get getCovidVaccine 各縣市疫苗接種率</button>
+    <h2>Taiwan Country</h2>
   </div>
 </template>
 
@@ -11,32 +10,40 @@
 export default {
     data() {
         return {
-            data: []
+            data: [],
+            deta: []
         }
     },
   methods: {
     async getCovidCountry () {
       try {
+        const self = this
         const limited = '全部縣市'
         // const limited = '台中市'
         const res = await this.$axios.$get(`http://localhost:3000/api/covidCountry?limited=${limited}`)
-        console.log('res: ', res)
+        const filteredData = res.data.filter(item => {
+          return item.a04 == '全區'
+        })
+       const dataAry = Array.from(filteredData)
+        console.log("data: ", Array.isArray(dataAry))
+        const filterData = []
+        for(let i=0;i<=dataAry.length;i++){
+          if(filterData.includes(dataAry[i].a03) )
+          {}else{
+            return filterData.push(dataAry[i])
+          }
+        }
+        self.deta = filterData
+      console.log('data', self.deta)
       } catch (error) {
         console.log('error: ', error)
       }
+     
       // const api = ''
     },
-    async getCovidVaccine () {
-            try {
-        const self = this
-        const res = await this.$axios.$get('http://localhost:3000/api/covidVaccine')
-        console.log('res: ', res)
-        self.data = res.data
-        console.log('data: ', self.data)
-      } catch (error) {
-        console.log('error: ', error)
-      }
-    }
+  },
+  created () {
+    this.getCovidCountry()
   }
 }
 </script>
