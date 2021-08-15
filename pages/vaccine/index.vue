@@ -90,7 +90,7 @@ export default {
       try {
         const self = this
         const res = await this.$axios.$get(
-          " https://blooming-basin-20592.herokuapp.com/api/covidVaccine"
+          "https://blooming-basin-20592.herokuapp.com/api/covidVaccine"
         )
         self.timecode = res.data[0].a01
         console.log("time: ", self.timecode)
