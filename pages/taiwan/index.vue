@@ -1,6 +1,18 @@
 <template>
   <div>
     <h2>Taiwan Country</h2>
+<div class="section grid grid-rows-1 grid-cols-4 gap-20">
+  <div class="
+  CountryCard
+  "  
+  v-for="(item, i) in data"
+  :key="i"
+  >
+    <h2>{{item.a03}}</h2>
+     <h2>{{item.a06}}</h2>
+
+  </div>
+  </div>
   </div>
 </template>
 
@@ -11,7 +23,6 @@ export default {
     data() {
         return {
             data: [],
-            deta: []
         }
     },
   methods: {
@@ -20,21 +31,26 @@ export default {
         const self = this
         const limited = '全部縣市'
         // const limited = '台中市'
-        const res = await this.$axios.$get(`https://blooming-basin-20592.herokuapp.com/api/covidCountry?limited=${limited}`)
-        const filteredData = res.data.filter(item => {
+        // const res = await this.$axios.$get(`https://blooming-basin-20592.herokuapp.com/api/covidCountry?limited=${limited}`)
+        const res = await this.$axios.$get(`http://localhost:3000/api/covidCountry?limited=${limited}`)
+        const filterAry = res.data.filter(item => {
           return item.a04 == '全區'
         })
-       const dataAry = Array.from(filteredData)
-        console.log("data: ", Array.isArray(dataAry))
-        const filterData = []
-        for(let i=0;i<=dataAry.length;i++){
-          if(filterData.includes(dataAry[i].a03) )
-          {}else{
-            return filterData.push(dataAry[i])
-          }
+       const dataAry = Array.from(filterAry)
+        console.log("data: ", dataAry)
+        const forData = []
+        for(let i=0;i<filterAry.length;i++){
+            forData.push(filterAry[i].a03)  
         }
-        self.deta = filterData
-      console.log('data', self.deta)
+        const SetAry = [...new Set(forData)]
+      console.log('data', SetAry)
+      const findData = []
+for(let i=0;i<SetAry.length;i++){
+let found = filterAry.find(element => element.a03 == SetAry[i] );
+findData.push(found);
+}
+self.data = findData
+console.log('data:', self.data)
       } catch (error) {
         console.log('error: ', error)
       }

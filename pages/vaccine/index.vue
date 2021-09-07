@@ -1,11 +1,34 @@
 <template>
-  <div class="container mx-auto">
+  <div class="container mx-auto pt-5 bg-gray-200">
+    <div class="title bg-gray-200 flex justify-between font-bold pt-4 mb-8">
+      <h2 class="ml-16 pb-1 text-bold text-3xl border-b-4 border-blue-500">疫苗累積接種人數</h2>
+      <span class="pr-16 text-bold">更新時間: {{ todayTimecode }}</span>
+    </div>
+    <div class="section AllVaccine text-center grid grid-rows-1 grid-cols-4 gap-x-10 gap-y-20 pb-6 px-4 justify-end">
+      <div class="
+      AllVaccineCard
+      text-center
+      shadow-md
+      border-t-2
+      border-gray-300
+      "
+        v-for="(item, i) in Alldata"
+        :key="i"
+      >
+     <h2 class="text-bold text-xl mt-4"><fa :icon="['fas', 'syringe']" /> {{item.a03}} </h2>
+     <h4 class="text-5xl text-yellow-500 mt-6 mb-4">{{item.a06}} 人</h4>
+     
+      </div>
+     
+      <div class="percentInfo shadow-md pt-4 border-t-2 border-gray-300"><h2 class="text-bold text-xl mb-4"><fa :icon="['fas', 'syringe']" /> 疫苗覆蓋率<p class="text-5xl text-blue-500 mt-6">{{(totalShot / 23470633 *100 ).toFixed(2)}} %</p></h2>
+     </div>
+    </div>
     <div class="title bg-gray-200 text-right pt-4 pr-8 font-bold">
       <h2>(滑鼠滑到想看的地區上 即可跑出地區相關資訊)</h2>
       <h2>更新時間: {{ timecode }}</h2>
     </div>
     <div
-      class="content grid grid-rows-1 grid-cols-4 gap-20 py-8 px-8 bg-gray-200"
+      class="content grid grid-rows-1 grid-cols-2 lg:grid-cols-4 gap-y-20 gap-x-24 py-8 px-20 bg-gray-200"
     >
       <div
         class="
@@ -20,8 +43,8 @@
       >
         <h2
           class="
-            px-16
-            py-40
+            my-20
+            py-4
             CoverPage
             text-5xl text-white
             bg-black
@@ -48,7 +71,7 @@
               <h6>moderna: {{ item.a18 }}%</h6>
             </div>
           </li>
-          <li class="mb-2 font-medium">
+          <!-- <li class="mb-2 font-medium">
             <fa :icon="['fas', 'syringe']" /> 累計配送量 (劑): {{ item.a07 }}劑
             <div class="categories">
               <h6>az: {{ item.a13 }}劑</h6>
@@ -61,7 +84,7 @@
               <h6>az: {{ item.a14 }}劑</h6>
               <h6>moderna: {{ item.a20 }}劑</h6>
             </div>
-          </li>
+          </li> -->
           <li>
             <fa :icon="['fas', 'syringe']" /> 剩餘量 (%): {{ item.a09 }}%
             <div class="categories">
@@ -83,15 +106,19 @@ export default {
     return {
       data: [],
       timecode: "",
+      Alldata: [],
+      todayTimecode: "",
+      totalShot: 0
     }
   },
   methods: {
     async getCovidVaccine() {
       try {
         const self = this
-        const res = await this.$axios.$get(
-          "https://blooming-basin-20592.herokuapp.com/api/covidVaccine"
-        )
+        // const res = await this.$axios.$get(
+        //   "https://blooming-basin-20592.herokuapp.com/api/covidVaccine"
+        // )
+        const res = await this.$axios.$get("http://localhost:3000/api/covidVaccine")
         self.timecode = res.data[0].a01
         console.log("time: ", self.timecode)
         const filteredData = res.data.filter(item => {
@@ -103,9 +130,35 @@ export default {
         console.log("error: ", error)
       }
     },
+    async getCovidVaccineAll() {
+      try {
+        const self = this
+        // const res = await this.$axios.$get(
+        //   "https://blooming-basin-20592.herokuapp.com/api/covidVaccine"
+        // )
+        const res = await this.$axios.$get("http://localhost:3000/api/covidVaccineAll")
+        console.log("Alldata: ", res)
+        const popData = res.data
+        self.todayTimecode = popData.pop().a02
+        console.log('today:', self.todayTimecode)
+         const filteredAllData = res.data.filter(item => {
+          return item.a02 == self.todayTimecode
+        })
+        self.Alldata = filteredAllData
+        for(let i=0;i<self.Alldata.length;i++)
+        {
+        self.totalShot = self.totalShot + parseInt(self.Alldata[i].a04)
+        }
+          console.log('self.totalShot:', self.totalShot)
+        console.log('filterDone', self.Alldata)
+      } catch (error) {
+        console.log("error: ", error)
+      }
+    },
   },
   created() {
     this.getCovidVaccine()
+    this.getCovidVaccineAll()
   },
 }
 </script>
@@ -124,7 +177,13 @@ button {
   position: absolute;
   z-index: -1;
 }
+.VaccineCard{
+  background-image: url(../../assets/city01.jpg);
+  background-size:cover;
+  background-position: center;
+}
 .VaccineCard:hover {
+   background-image: none;
   background-color: white;
   transition: 0.3s ease;
   .CoverPage {
