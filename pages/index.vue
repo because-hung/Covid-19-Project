@@ -4,7 +4,7 @@
       <h2 class="border-b-4 border-red-700 font-bold text-4xl py-4 px-2">
         全球疫情狀況
       </h2>
-      <h4 class="font-medium">時間: {{ this.Time }}</h4>
+      <h4 class="font-bold">時間: {{ this.Time }}</h4>
     </div>
     <div class="GobalCardGroup grid grid-rows-1 grid-cols-4 gap-x-20 p-8">
       <div class="card border-2 bg-white p-8 font-bold">

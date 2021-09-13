@@ -1,9 +1,10 @@
 <template>
-<div class="bgImg flex">
-  <div class="container mx-auto rounded-lg mt-6 mb-16">
+<div class="bgImg flex flex-col">
+  <div class="container mx-auto rounded-lg mt-6 mb-8">
   <Header />
   <Nuxt />
   </div>
+   <Footer/>
 </div>
 </template>
 <style>

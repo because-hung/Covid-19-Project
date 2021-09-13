@@ -1,8 +1,8 @@
 <template>
   <div class="container mx-auto pt-5 bg-gray-200">
-    <div class="title bg-gray-200 flex justify-between font-bold pt-4 mb-8">
-      <h2 class="ml-16 pb-1 text-bold text-3xl border-b-4 border-blue-500">疫苗累積接種人數</h2>
-      <span class="pr-16 text-bold">更新時間: {{ todayTimecode }}</span>
+    <div class="Vaccinetitle bg-gray-200 flex justify-between font-bold pt-4 mb-8">
+      <h2 class="ml-16 pb-1 font-bold text-3xl border-b-4 border-blue-500">疫苗累積接種人數</h2>
+      <span class="pr-16 font-bold">更新時間: {{ todayTimecode }}</span>
     </div>
     <div class="section AllVaccine text-center grid grid-rows-1 grid-cols-4 gap-x-10 gap-y-20 pb-6 px-4 justify-end">
       <div class="
