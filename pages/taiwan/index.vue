@@ -1,14 +1,15 @@
 <template>
   <div>
-    <div class="Taiwntitle flex justify-between font-bold mt-8 mb-10">
-      <div class="info flex justify-between ">
-   <h2 class="ml-2 pb-1 font-bold text-3xl border-b-4 border-yellow-500">台灣各地區總確診人數</h2>
-      <h2 class="ml-28  font-bold text-3xl ">本土人數+ <span class="text-red-500 text-5xl"> {{total}}</span></h2>
+    <div class="Taiwntitle justify-between font-bold py-8 bg-gray-200 px-4">
+       <h4 class="text-center sm:text-right sm:pr-10 font-bold mb-6">更新時間: {{ timecode }}</h4>
+      <div class="info text-center sm:text-left sm:flex justify-between px-4 md:px-8">
+        <h2><span  class=" pb-1 font-bold text-3xl border-b-4 border-yellow-500">台灣各地區總確診人數</span></h2>
+        <h2 class="mt-6 sm:mt-0 font-bold text-3xl ld:pr-6">本土人數+ <span class="text-red-500 text-5xl"> {{total}}</span></h2>
       </div>
-    <span class="mr-2 mt-4 font-bold ">更新時間: {{ timecode }}</span>
+   
     </div>
 
-<div class="section grid grid-rows-1 grid-cols-4 gap-20">
+<div class="section grid grid-cols-1 sm:grid-cols-2 ld:grid-cols-4 gap-x-20 gap-y-10 bg-gray-200  px-8 pb-8">
   <div class="
   CountryCard
   mt-10
@@ -16,19 +17,18 @@
   border-black
   rounded-3xl
   text-center
-  bg-gray-200
   opacity-80
  
   "  
   v-for="(item, i) in data"
   :key="i"
   >
-    <h2 class=" CountryTitle text-xl border-b-2 border-black bg-yellow-300 font-bold  rounded-full  py-2 "
+    <h2 class=" CountryTitle text-xl border-b-2 border-black bg-green-300 font-bold  rounded-full  py-2 "
     :class="{ 'plusColor': addData[i]}"
     >{{item.a03}}</h2>
     
     <div class="peopleNum justify-center">
-    <h2 class="text-5xl text-blue-700 py-4 font-bold opacity-100 ">{{item.a06}}</h2>
+    <h2 class="Num text-5xl text-blue-700 my-4 font-bold opacity-100 ">{{item.a06}}</h2>
      <h3  class="plusNum font-bold text-4xl text-red-700 font-mono" v-if="addData[i]">+{{addData[i]}}</h3>
      </div>
 
@@ -107,7 +107,7 @@ console.log('total:', self.total)
 }
 </script>
 
-<style>
+<style lang="scss">
 button{
   border: 3px solid black;
 }
@@ -122,4 +122,10 @@ top: 45%;
 .plusColor{
   background: #FF2D2D;
 }
+.CountryCard{
+     background-image: url(../../assets/country02.jpg);
+     background-size: cover;
+     background-position: center center;
+}
+
 </style>

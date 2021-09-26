@@ -14,13 +14,13 @@
                         ></div>
                     </div>
                     <div class="tabs  flex  ml-4 mr-4 sm:mr-0 text-2xl hidden sm:inline-flex">
-                        <nuxt-link to="./"><button class="bg-white  py-4 px-6 ld:px-16 sm:rounded-t-xl  font-bold border-white">
+                        <nuxt-link to="./" ><button class="bg-white  py-4 px-6 ld:px-16 sm:rounded-t-xl  font-bold border-white" @click="togglemenu">
                             全球疫情狀況
                         </button></nuxt-link>
-                        <nuxt-link to="./taiwan"><button class="bg-white  py-4 px-6 ld:px-16 mt-3 sm:mt-0 sm:rounded-t-xl sm:mx-3  font-bold border-white">
+                        <nuxt-link to="./taiwan" ><button class="bg-white  py-4 px-6 ld:px-16 mt-3 sm:mt-0 sm:rounded-t-xl sm:mx-3  font-bold border-white" @click="togglemenu">
                             台灣縣市狀況
                         </button></nuxt-link>
-                        <nuxt-link to="./vaccine"><button class="bg-white  py-4 px-6 ld:px-16 mt-3 sm:mt-0 sm:rounded-t-xl mr-3 font-bold border-white">
+                        <nuxt-link to="./vaccine" ><button class="bg-white  py-4 px-6 ld:px-16 mt-3 sm:mt-0 sm:rounded-t-xl mr-3 font-bold border-white" @click="togglemenu">
                             疫苗施打狀況
                         </button></nuxt-link>
                      
@@ -64,9 +64,9 @@ export default {
     },
     methods:{
         openMenu (id) {
-            var menu =  document.querySelector('.tabs');
-            var ball = document.querySelector('.colorball');
-            var bground =  document.querySelector('.topbanner')
+            let menu =  document.querySelector('.tabs');
+            let ball = document.querySelector('.colorball');
+            let bground =  document.querySelector('.topbanner')
             if(id==1){
    menu.style.display="block";
     bground.style.background="none";
@@ -82,13 +82,21 @@ export default {
             }
          
 
+        },
+        togglemenu () {
+            let screenWidth = screen.width;
+            console.log("screenWidth:", screenWidth);
+            if (screenWidth < 415){
+            let menu =  document.querySelector('.tabs');
+            let ball = document.querySelector('.colorball');
+            let bground =  document.querySelector('.topbanner')
+            menu.style.display="none";
+             ball.style.display="block";
+                       ball.style.display="flex";
+                         bground.style.background="rgba(209, 213, 219, var(--tw-bg-opacity))";
+            
+        }
         }
     }
 }
 </script>
-<style>
-@media max {
-    
-}
-
-</style>

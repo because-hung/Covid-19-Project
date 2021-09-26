@@ -1,10 +1,13 @@
 <template>
   <div class="container mx-auto pt-5 bg-gray-200">
-    <div class="Vaccinetitle bg-gray-200 flex justify-between font-bold pt-4 mb-8">
-      <h2 class="ml-16 pb-1 font-bold text-3xl border-b-4 border-blue-500">疫苗累積接種人數</h2>
-      <span class="pr-16 font-bold">更新時間: {{ todayTimecode }}</span>
+      <h4 class="text-center sm:text-right sm:pr-10 font-bold mb-2">更新時間: {{ todayTimecode }}</h4>
+    <div class="Vaccinetitle bg-gray-200 text-center sm:text-left sm:flex sm:justify-between font-bold pt-4 mb-8 px-4 ld:px-8">
+      <h2 class=" mb-8 sm:mb-0 px-4"><span class="pb-1 font-bold text-3xl border-b-4 border-blue-500">疫苗累積接種人數</span></h2>
+    <div class="text-bold text-2xl sm:flex items-center "><fa :icon="['fas', 'syringe']" /> 疫苗覆蓋率<p class="text-5xl text-blue-500 ml-3">{{(totalShot / 23451837 *100 ).toFixed(2)}} <span class="text-3xl">%</span></p></div>
+    
+    
     </div>
-    <div class="section AllVaccine text-center grid grid-rows-1 grid-cols-4 gap-x-10 gap-y-20 pb-6 px-4 justify-end">
+    <div class="section AllVaccine text-center grid grid-rows-1 grid-cols-1 sm:grid-cols-2 ld:grid-cols-4  gap-x-10 gap-y-20 pb-6 px-6 justify-end">
       <div class="
       AllVaccineCard
       text-center
@@ -16,19 +19,18 @@
         :key="i"
       >
      <h2 class="text-bold text-xl mt-4"><fa :icon="['fas', 'syringe']" /> {{item.a03}} </h2>
-     <h4 class="text-5xl text-yellow-500 mt-6 mb-4">{{item.a06}} 人</h4>
+     <h4 class="text-5xl text-yellow-500 mt-6 mb-4">{{item.a06}} <span class="text-3xl">人</span></h4>
      
       </div>
      
-      <div class="percentInfo shadow-md pt-4 border-t-2 border-gray-300"><h2 class="text-bold text-xl mb-4"><fa :icon="['fas', 'syringe']" /> 疫苗覆蓋率<p class="text-5xl text-blue-500 mt-6">{{(totalShot / 23470633 *100 ).toFixed(2)}} %</p></h2>
-     </div>
+      
     </div>
     <div class="title bg-gray-200 text-right pt-4 pr-8 font-bold">
       <h2>(滑鼠滑到想看的地區上 即可跑出地區相關資訊)</h2>
       <h2>更新時間: {{ timecode }}</h2>
     </div>
     <div
-      class="content grid grid-rows-1 grid-cols-2 lg:grid-cols-4 gap-y-20 gap-x-24 py-8 px-20 bg-gray-200"
+      class="content grid grid-rows-1 grid-cols-1 sm:grid-cols-2 ld:grid-cols-4 gap-12 ld:gap-20 py-8 px-10 ld:px-16 bg-gray-200"
     >
       <div
         class="
@@ -46,8 +48,8 @@
             my-20
             py-4
             CoverPage
-            text-5xl text-white
-            bg-black
+            text-5xl
+            text-white
             font-bold
             mx-auto
           "
@@ -108,7 +110,8 @@ export default {
       timecode: "",
       Alldata: [],
       todayTimecode: "",
-      totalShot: 0
+      totalShot: 0,
+      screenWidth: 0
     }
   },
   methods: {
@@ -155,11 +158,19 @@ export default {
         console.log("error: ", error)
       }
     },
+    getMobileScreen() {
+      this.screenWidth = screen.width
+      console.log("screenWidth:", this.screenWidth)
+    }
   },
   created() {
     this.getCovidVaccine()
     this.getCovidVaccineAll()
+   
   },
+  mounted() {
+ this.getMobileScreen()
+  }
 }
 </script>
 
@@ -178,11 +189,27 @@ button {
   z-index: -1;
 }
 .VaccineCard{
-  background-image: url(../../assets/city01.jpg);
-  background-size:cover;
-  background-position: center;
+  background-image: url(../../assets/country03.jpg);
+     background-size: cover;
+     background-position: center center;
 }
-.VaccineCard:hover {
+// .VaccineCard:hover {
+//    background-image: none;
+//   background-color: white;
+//   transition: 0.3s ease;
+//   .CoverPage {
+//     display: none;
+//   }
+//   .VaccineList {
+//     z-index: 2;
+//     transform: translate(-30px, -30px);
+//     transition: 0.5s ease;
+//     border: 3px skyblue solid;
+   
+//   }
+// }
+
+.VaccineCard:focus {
    background-image: none;
   background-color: white;
   transition: 0.3s ease;

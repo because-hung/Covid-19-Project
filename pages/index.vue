@@ -1,10 +1,11 @@
 <template>
-  <div class="content bg-gray-100 pb-16">
-    <div class="GobalTitle flex justify-between px-8 py-4">
-      <h2 class="border-b-4 border-red-700 font-bold text-3xl md:text-4xl py-4 px-2">
+  <div class="content bg-gray-200 pb-16">
+      <h4 class="font-bold text-center sm:text-right pt-6 px-4 mr-6 ld:mr-10">時間: {{ this.Time }}</h4>
+    <div class="GobalTitle flex justify-center sm:justify-start px-8 py-4">
+      <h2 class="border-b-4 border-red-700 font-bold text-3xl md:text-4xl py-4 px-2 " >
         全球疫情狀況
       </h2>
-      <h4 class="font-bold text-right mt-4 md:mt-0 text-sm md:text-base">時間: {{ this.Time }}</h4>
+    
     </div>
     <div class="GobalCardGroup grid grid-rows-1 grid-cols-1 sm:grid-cols-2 ld:grid-cols-4 gap-x-20 gap-y-10 ld:gap-y-0 p-8">
       <div class="card border-2 bg-white p-8 font-bold">
