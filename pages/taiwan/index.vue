@@ -1,11 +1,16 @@
 <template>
   <div>
-    <div class="Taiwntitle justify-between font-bold py-8 bg-gray-200 px-4">
-       <h4 class="text-center sm:text-right sm:pr-10 font-bold mb-6">更新時間: {{ timecode }}</h4>
-      <div class="info text-center sm:text-left sm:flex justify-between px-4 md:px-8">
-        <h2><span  class=" pb-1 font-bold text-3xl border-b-4 border-yellow-500">台灣各地區總確診人數</span></h2>
+    <div class="Taiwntitle justify-between font-bold py-4 bg-gray-200 px-4">
+       <h4 class="text-center md:text-right md:pr-10 font-bold mb-6">更新時間: {{ timecode }}</h4>
+       
+      <div class="info text-center md:text-left md:flex justify-between px-4 md:px-8">
+        <h2 class="mb-6 md:mb-0"><span  class=" pb-1 font-bold text-3xl border-b-4 border-yellow-500">台灣各地區總確診人數</span></h2>
+        <div class="totalplus   sm:flex justify-evenly  sm:mt-0">
+        <h2 class="mt-6  sm:mt-0 mb-2 ld:mb-0  font-bold text-3xl ld:pr-6">境外人數+ <span class="text-red-500 text-5xl"> {{addData[0]}}</span></h2>
         <h2 class="mt-6 sm:mt-0 font-bold text-3xl ld:pr-6">本土人數+ <span class="text-red-500 text-5xl"> {{total}}</span></h2>
-      </div>
+  
+</div>  
+</div>
    
     </div>
 
@@ -29,7 +34,7 @@
     
     <div class="peopleNum justify-center">
     <h2 class="Num text-5xl text-blue-700 my-4 font-bold opacity-100 ">{{item.a06}}</h2>
-     <h3  class="plusNum font-bold text-4xl text-red-700 font-mono" v-if="addData[i]">+{{addData[i]}}</h3>
+     <h3  class="plusNum font-bold text-3xl ld:ml-0 ld:text-4xl text-red-700 font-mono" v-if="addData[i]">+{{addData[i]}}</h3>
      </div>
 
   </div>
@@ -46,6 +51,7 @@ export default {
             data: [],
             timecode:'',
             addData:[],
+            plusData:[],
             total: 0
         }
     },
@@ -67,27 +73,27 @@ export default {
        filterAry.forEach((item)=>{
          return forData.push(item.a03)
        })
-        // for(let i=0;i<filterAry.length;i++){
-        //     forData.push(filterAry[i].a03)    //change
-        // }
         const SetAry = [...new Set(forData)]
       const findData = []
 for(let i=0;i<SetAry.length;i++){
 let found = filterAry.find(element => element.a03 == SetAry[i] );
 findData.push(found);
 }
-findData.shift();
+// findData.shift();
 self.data = findData;
 self.timecode = findData[0].a02
 self.data.map((element) => {
   if (element.a02 == self.timecode ){
   self.addData.push(element.a05)
+  self.plusData.push(element.a05)
   }
   else{
       self.addData.push(0)
+      self.plusData.push(0)
   }
 })
-self.total = self.addData.reduce((acc, cur)=>{
+self.plusData.shift()
+self.total = self.plusData.reduce((acc, cur)=>{
   return parseInt(acc) + parseInt(cur)
 })
 console.log('data:', self.data)
@@ -116,7 +122,7 @@ button{
 }
 .plusNum{
 position:absolute;
-right: 8%;
+right: 7%;
 top: 45%;
 }
 .plusColor{

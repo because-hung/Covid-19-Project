@@ -19,13 +19,14 @@
         </div>
 
         <!--pad and computer screen-->
-        <div class="tabs flex ml-4 mr-4 sm:mr-0 text-2xl hidden sm:inline-flex">
+        <div class="tabs mt-3 ml-4 mr-4 sm:mr-0 text-2xl hidden sm:flex">
           <nuxt-link to="./"
             ><button
               class="
+                pcButton
                 bg-white
                 py-4
-                px-6
+                px-10
                 ld:px-16
                 sm:rounded-t-xl
                 font-bold
@@ -38,9 +39,10 @@
           <nuxt-link to="./taiwan"
             ><button
               class="
+                pcButton
                 bg-white
                 py-4
-                px-6
+                px-10
                 ld:px-16
                 mt-3
                 sm:mt-0 sm:rounded-t-xl sm:mx-3
@@ -54,9 +56,10 @@
           <nuxt-link to="./vaccine"
             ><button
               class="
+                pcButton
                 bg-white
                 py-4
-                px-6
+                px-10
                 ld:px-16
                 mt-3
                 sm:mt-0 sm:rounded-t-xl
@@ -70,8 +73,8 @@
           >
         </div>
         <!--mobile screen-->
-        <div class="mobileMenu w-full pr-3 flex flex-col items-end mt-2" :class="{'active':open}">
-        <div class="hambutton block sm:hidden pt-2" >
+        <div class="mobileMenu w-full pr-3 flex flex-col items-end mt-2  block sm:hidden" :class="{'active':open}">
+        <div class="hambutton pt-2" >
              <fa
           :icon="['fas', 'bars']"
           class="text-black text-3xl"
@@ -187,7 +190,6 @@ export default {
   .buttonActive{
       color: white;
   }
-
 
 
 </style>
