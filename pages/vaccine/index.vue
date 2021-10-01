@@ -193,23 +193,7 @@ button {
      background-size: cover;
      background-position: center center;
 }
-// .VaccineCard:hover {
-//    background-image: none;
-//   background-color: white;
-//   transition: 0.3s ease;
-//   .CoverPage {
-//     display: none;
-//   }
-//   .VaccineList {
-//     z-index: 2;
-//     transform: translate(-30px, -30px);
-//     transition: 0.5s ease;
-//     border: 3px skyblue solid;
-   
-//   }
-// }
-
-.VaccineCard:focus {
+.VaccineCard:hover {
    background-image: none;
   background-color: white;
   transition: 0.3s ease;
@@ -224,4 +208,6 @@ button {
    
   }
 }
+
+
 </style>
