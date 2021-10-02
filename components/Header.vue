@@ -12,14 +12,14 @@
         "
        
       >
-        <div class="colorball flex items-center"   >
+        <div class="colorball flex items-center">  <!--三個球 紅 黃 綠-->
           <div class="ball bg-red-400 rounded-full w-6 h-6 ml-2" v-if="!open"></div>
           <div class="ball bg-yellow-300 rounded-full w-6 h-6 ml-2" v-if="!open"></div>
           <div class="ball bg-green-400 rounded-full w-6 h-6 ml-2" v-if="!open"></div>
         </div>
 
-        <!--pad and computer screen-->
-        <div class="tabs mt-3 ml-4 mr-4 sm:mr-0 text-2xl hidden sm:flex">
+        <!--pc layout 電腦版型-->
+        <div class="tabs mt-3 ml-4 mr-4 sm:mr-0 text-2xl hidden sm:flex">  <!--連結按鈕-->
           <nuxt-link to="./"
             ><button
               class="
@@ -72,7 +72,7 @@
             </button></nuxt-link
           >
         </div>
-        <!--mobile screen-->
+        <!--mobile layout  手機版型  漢堡選單-->
         <div class="mobileMenu w-full pr-3 flex flex-col items-end mt-2  block sm:hidden" :class="{'active':open}">
         <div class="hambutton pt-2" >
              <fa
@@ -84,7 +84,7 @@
 
           </div>
        
-        <div class="hamMenu py-2">
+        <div class="hamMenu py-2 w-full">
           
           <div
             class="mobile-link flex flex-col justify-center items-center"
@@ -92,7 +92,7 @@
           >
             <nuxt-link to="./"
               ><button
-                class=" py-6 my-2 px-2 font-bold border-white border-2 rounded-lg blur"
+                class=" py-6 my-3 px-16 font-bold border-white border-2 rounded-lg blur"
                 @click="open = false"
               >
                 全球疫情狀況
@@ -100,7 +100,7 @@
             >
             <nuxt-link to="./taiwan"
               ><button
-                class=" py-6 my-2 px-2 font-bold border-white border-2 rounded-lg blur"
+                class=" py-6 my-3 px-16 font-bold border-white border-2 rounded-lg blur"
                 @click="open = false"
               >
                 台灣縣市狀況
@@ -108,7 +108,7 @@
             >
             <nuxt-link to="./vaccine"
               ><button
-                class=" py-6 my-2 px-2 font-bold border-white border-2 rounded-lg blur"
+                class=" py-6 my-3 px-16 font-bold border-white border-2 rounded-lg blur"
                 @click="open = false"
               >
                 疫苗施打狀況
@@ -137,43 +137,12 @@
 export default {
   data() {
     return {
-      toggle: 1,
       open: false,
     }
   },
   methods: {
     openMenu() {
-      this.open = !this.open
-
-      //             let menu =  document.querySelector('.tabs');
-      //             let ball = document.querySelector('.colorball');
-      //             let bground =  document.querySelector('.topbanner')
-      //             if(id==1){
-      //    menu.style.display="block";
-      //     bground.style.background="none";
-      //       ball.style.display="none";
-      //             this.toggle = 0
-      //             }else{
-      //                   menu.style.display="none";
-      //                      ball.style.display="block";
-      //                        ball.style.display="flex";
-      //                          bground.style.background="rgba(209, 213, 219, var(--tw-bg-opacity))";
-
-      //             this.toggle = 1
-      //             }
-    },
-    togglemenu() {
-      let screenWidth = screen.width
-      console.log("screenWidth:", screenWidth)
-      if (screenWidth < 415) {
-        let menu = document.querySelector(".tabs")
-        let ball = document.querySelector(".colorball")
-        let bground = document.querySelector(".topbanner")
-        menu.style.display = "none"
-        ball.style.display = "block"
-        ball.style.display = "flex"
-        bground.style.background = "rgba(209, 213, 219, var(--tw-bg-opacity))"
-      }
+      this.open = !this.open //控制漢堡選單開關
     },
   },
 }
@@ -185,7 +154,7 @@ export default {
 
   }
   .blur{
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px); //毛玻璃特效
   }
   .buttonActive{
       color: white;

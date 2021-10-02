@@ -1,6 +1,6 @@
 <template>
   <div class="content bg-gray-200 pb-16">
-      <h4 class="font-bold text-center sm:text-right pt-6 px-4 mr-6 ld:mr-10">時間: {{ this.Time }}</h4>
+      <h4 class="font-bold text-center sm:text-right pt-6 px-4 mr-6 ld:mr-10">時間: {{ this.todayTime }}</h4>
     <div class="GobalTitle flex justify-center sm:justify-start px-8 py-4">
       <h2 class="border-b-4 border-red-700 font-bold text-3xl md:text-4xl py-4 px-2 " >
         全球疫情狀況
@@ -84,10 +84,10 @@
 export default {
   data() {
     return {
-      gobalData: [],
-      twData: [],
-      Time: "",
-      TWflag: "",
+      gobalData: [],  //世界數據
+      twData: [],  //台灣數據
+      todayTime: "",    //現在時間
+      TWflag: "",  //台灣國旗
     }
   },
   methods: {
@@ -116,10 +116,10 @@ export default {
         console.log("error: ", error)
       }
     },
-    getTime() {
+    getTime() {  //抓現在的時間
       const self = this
       const timeNow = Date.now()
-      self.Time = new Date(timeNow)
+      self.todayTime = new Date(timeNow)
     },
   },
   created() {

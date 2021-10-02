@@ -6,7 +6,7 @@
       <div class="info text-center md:text-left md:flex justify-between px-4 md:px-8">
         <h2 class="mb-6 md:mb-0"><span  class=" pb-1 font-bold text-3xl border-b-4 border-yellow-500">台灣各地區總確診人數</span></h2>
         <div class="totalplus   sm:flex justify-evenly  sm:mt-0">
-        <h2 class="mt-6  sm:mt-0 mb-2 ld:mb-0  font-bold text-3xl ld:pr-6">境外人數+ <span class="text-red-500 text-5xl"> {{addData[0]}}</span></h2>
+        <h2 class="mt-6  sm:mt-0 mb-2 ld:mb-0  font-bold text-3xl ld:pr-6">境外人數+ <span class="text-red-500 text-5xl"> {{plusData[0]}}</span></h2>
         <h2 class="mt-6 sm:mt-0 font-bold text-3xl ld:pr-6">本土人數+ <span class="text-red-500 text-5xl"> {{total}}</span></h2>
   
 </div>  
@@ -29,12 +29,12 @@
   :key="i"
   >
     <h2 class=" CountryTitle text-xl border-b-2 border-black bg-green-300 font-bold  rounded-full  py-2 "
-    :class="{ 'plusColor': addData[i]}"
-    >{{item.a03}}</h2>
+    :class="{ 'plusColor': plusData[i]}"
+    >{{item.a03}}</h2> <!--有增加確診人數 title就會變顏色-->
     
     <div class="peopleNum justify-center">
     <h2 class="Num text-5xl text-blue-700 my-4 font-bold opacity-100 ">{{item.a06}}</h2>
-     <h3  class="plusNum font-bold text-3xl ld:ml-0 ld:text-4xl text-red-700 font-mono" v-if="addData[i]">+{{addData[i]}}</h3>
+     <h3  class="plusNum font-bold text-3xl ld:ml-0 ld:text-4xl text-red-700 font-mono" v-if="plusData[i]">+{{plusData[i]}}</h3>
      </div>
 
   </div>
@@ -49,10 +49,10 @@ export default {
     data() {
         return {
             data: [],
-            timecode:'',
-            addData:[],
-            plusData:[],
-            total: 0
+            timecode:'', //更新的時間
+            plusData:[],  //新增確診人數的Data (含境外移入 做title變色 跟 新增人數數量的提示)
+            TaiwanplusData:[],  //本土確診人數的Data (未含境外移入 做本土reduce 總和計算)
+            total: 0 //本土確診人數的總和
         }
     },
   methods: {
@@ -63,42 +63,42 @@ export default {
         // const limited = '台中市'
         // const res = await this.$axios.$get(`https://blooming-basin-20592.herokuapp.com/api/covidCountry?limited=${limited}`)
         const res = await this.$axios.$get(`http://localhost:3000/api/covidCountry?limited=${limited}`)
-        const filterAry = res.data.filter(item => {
-          return item.a04 == '全區'
+        const filterAry = res.data.filter(item => {  //抓取縣市全區總人數
+          return item.a04 == '全區' 
         })
-       const dataAry = Array.from(filterAry)
+       const dataAry = Array.from(filterAry) //物件轉陣列
         console.log("data: ", dataAry)
         const forData = []
 
        filterAry.forEach((item)=>{
-         return forData.push(item.a03)
+         return forData.push(item.a03) // 抓取縣市名稱 之後要做比對過濾用
        })
-        const SetAry = [...new Set(forData)]
+        const SetAry = [...new Set(forData)]  //轉陣列
       const findData = []
 for(let i=0;i<SetAry.length;i++){
-let found = filterAry.find(element => element.a03 == SetAry[i] );
+let found = filterAry.find(element => element.a03 == SetAry[i] ); // 比對過濾  抓出最近的一筆資料
 findData.push(found);
 }
 // findData.shift();
 self.data = findData;
-self.timecode = findData[0].a02
-self.data.map((element) => {
-  if (element.a02 == self.timecode ){
-  self.addData.push(element.a05)
+self.timecode = findData[0].a02 //抓更新的時間
+self.data.map((element) => {  //抓取增加的人數
+  if (element.a02 == self.timecode ){ 
   self.plusData.push(element.a05)
+  self.TaiwanplusData.push(element.a05)
   }
   else{
-      self.addData.push(0)
       self.plusData.push(0)
+      self.TaiwanplusData.push(0)
   }
 })
-self.plusData.shift()
-self.total = self.plusData.reduce((acc, cur)=>{
+self.TaiwanplusData.shift() //去掉第一位 (境外移入) 拿到本土人數
+self.total = self.TaiwanplusData.reduce((acc, cur)=>{ //人數總和
   return parseInt(acc) + parseInt(cur)
 })
 console.log('data:', self.data)
 console.log('timecode:', self.timecode)
-console.log('plus:', self.addData)
+console.log('plus:', self.plusData)
 console.log('total:', self.total)
       } catch (error) {
         console.log('error: ', error)
@@ -120,12 +120,12 @@ button{
 .peopleNum{
   position: relative;
 }
-.plusNum{
+.plusNum{  //增加人數 數字的位置
 position:absolute;
 right: 7%;
 top: 45%;
 }
-.plusColor{
+.plusColor{  //有增加確診人數  就會變顏色
   background: #FF2D2D;
 }
 .CountryCard{
