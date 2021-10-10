@@ -6,8 +6,8 @@
       <div class="info text-center md:text-left md:flex justify-between px-4 md:px-8">
         <h2 class="mb-6 md:mb-0"><span  class=" pb-1 font-bold text-3xl border-b-4 border-yellow-500">台灣各地區總確診人數</span></h2>
         <div class="totalplus   sm:flex justify-evenly  sm:mt-0">
-        <h2 class="mt-6  sm:mt-0 mb-2 ld:mb-0  font-bold text-3xl ld:pr-6">境外人數+ <span class="text-red-500 text-5xl"> {{plusData[0]}}</span></h2>
-        <h2 class="mt-6 sm:mt-0 font-bold text-3xl ld:pr-6">本土人數+ <span class="text-red-500 text-5xl"> {{total}}</span></h2>
+        <h2 class="mt-6  sm:mt-0 mb-2 ld:mb-0  font-bold text-3xl ld:pr-6">境外人數+ <span class="text-red-500 text-5xl"> {{foreignPlus}}</span></h2>
+        <h2 class="mt-6 sm:mt-0 font-bold text-3xl ld:pr-6">本土人數+ <span class="text-red-500 text-5xl"> {{TaiwanPlus}}</span></h2>
   
 </div>  
 </div>
@@ -52,7 +52,8 @@ export default {
             timecode:'', //更新的時間
             plusData:[],  //新增確診人數的Data (含境外移入 做title變色 跟 新增人數數量的提示)
             TaiwanplusData:[],  //本土確診人數的Data (未含境外移入 做本土reduce 總和計算)
-            total: 0 //本土確診人數的總和
+            TaiwanPlus: 0, //本土確診人數的總和
+            foreignPlus: 0
         }
     },
   methods: {
@@ -82,24 +83,35 @@ findData.push(found);
 // findData.shift();
 self.data = findData;
 self.timecode = findData[0].a02 //抓更新的時間
-self.data.map((element) => {  //抓取增加的人數
-  if (element.a02 == self.timecode ){ 
+self.data.map((element) => { 
+  if (element.a02 == self.timecode ){  //抓取增加的人數 (為右下角紅色新增人數的數字)
   self.plusData.push(element.a05)
-  self.TaiwanplusData.push(element.a05)
   }
   else{
       self.plusData.push(0)
+  }
+})
+
+self.data.map((element) => {   //去掉境外移入 拿到本土人數
+  if (element.a02 == self.timecode && element.a03 !== '境外移入' ){ 
+  self.TaiwanplusData.push(element.a05)
+  }else if(element.a03 == '境外移入'){
+  self.foreignPlus = element.a05  //抓取 境外移入人數
+  }
+  else{
       self.TaiwanplusData.push(0)
   }
 })
-self.TaiwanplusData.shift() //去掉第一位 (境外移入) 拿到本土人數
-self.total = self.TaiwanplusData.reduce((acc, cur)=>{ //人數總和
+
+self.TaiwanPlus = self.TaiwanplusData.reduce((acc, cur)=>{ //本土確診人數總和
   return parseInt(acc) + parseInt(cur)
 })
 console.log('data:', self.data)
 console.log('timecode:', self.timecode)
 console.log('plus:', self.plusData)
-console.log('total:', self.total)
+console.log('TaiwanPlusTotal:', self.TaiwanplusData)
+console.log('TaiwanPlus:', self.TaiwanPlus)
+console.log('foreignPlus:', self.foreignPlus)
       } catch (error) {
         console.log('error: ', error)
       }
