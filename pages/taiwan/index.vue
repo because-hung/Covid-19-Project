@@ -141,7 +141,7 @@ top: 45%;
   background: #FF2D2D;
 }
 .CountryCard{
-     background-image: url(../../assets/country02.jpg); //背景
+     background-image: url(../../assets/country02.jpg);
      background-size: cover;
      background-position: center center;
 }
