@@ -14,7 +14,7 @@
    
     </div>
 
-<div class="section grid grid-cols-1 sm:grid-cols-2 ld:grid-cols-4 gap-x-20 gap-y-10 bg-gray-200  px-8 pb-8">
+<div class="section grid grid-cols-1 sm:grid-cols-2 ld:grid-cols-3 lg:grid-cols-4 gap-x-20 gap-y-10 bg-gray-200  px-8 pb-8">
   <div class="
   CountryCard
   mt-10
