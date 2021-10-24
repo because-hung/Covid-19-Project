@@ -1,6 +1,8 @@
 const bodyParser = require('body-parser')
 
+
 export default {
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Covid-19 整合資訊',
