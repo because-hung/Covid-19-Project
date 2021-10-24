@@ -62,8 +62,8 @@ export default {
         const self = this
         const limited = '全部縣市'
         // const limited = '台中市'
-        // const res = await this.$axios.$get(`https://blooming-basin-20592.herokuapp.com/api/covidCountry?limited=${limited}`)
-        const res = await this.$axios.$get(`http://localhost:3000/api/covidCountry?limited=${limited}`)
+        const res = await this.$axios.$get(`https://git.heroku.com/project-covid19-info.herokuapp.com/api/covidCountry?limited=${limited}`)
+        // const res = await this.$axios.$get(`http://localhost:3000/api/covidCountry?limited=${limited}`)
         const filterAry = res.data.filter(item => {  //抓取縣市全區總人數
           return item.a04 == '全區' 
         })

@@ -4,7 +4,7 @@
     <div class="Vaccinetitle bg-gray-200 text-center sm:text-left sm:flex sm:justify-between font-bold pt-4 mb-8 px-4 ld:px-8">
       <h2 class=" mb-8 sm:mb-0 px-4"><span class="pb-1 font-bold text-3xl border-b-4 border-blue-500">疫苗累積接種人數</span></h2>
        <!--計算疫苗覆蓋率-->
-    <div class="text-bold text-2xl sm:flex items-center "><fa :icon="['fas', 'syringe']" /> 疫苗覆蓋率<p class="text-5xl text-blue-500 ml-3">{{(totalShot / 23451837 *100 ).toFixed(2)}} <span class="text-3xl">%</span></p></div>
+    <div class="text-bold text-2xl sm:flex items-center "><fa :icon="['fas', 'syringe']" /> 疫苗覆蓋率<p class="text-5xl text-blue-500 ml-3">{{(totalShot / 23430948 *100 ).toFixed(2)}} <span class="text-3xl">%</span></p></div>
    
     
     </div>
@@ -154,10 +154,9 @@ export default {
     async getCovidVaccine() {
       try {
         const self = this
-        // const res = await this.$axios.$get(
-        //   "https://blooming-basin-20592.herokuapp.com/api/covidVaccine"
-        // )
-        const res = await this.$axios.$get("http://localhost:3000/api/covidVaccine")
+        const res = await this.$axios.$get(
+          "https://git.heroku.com/project-covid19-info.herokuapp.com/api/covidVaccine")
+        // const res = await this.$axios.$get("http://localhost:3000/api/covidVaccine")
         self.countyTimecode = res.data[0].a01
         console.log("time: ", self.countyTimecode) //抓取 最近的更新時間
         const filteredData = res.data.filter(item => { 
