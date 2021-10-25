@@ -23,7 +23,8 @@
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",
     "nuxt": "^2.15.7",
-    "nuxt-fontawesome": "^0.4.0"
+    "nuxt-fontawesome": "^0.4.0",
+    "serve": "^12.0.1"
   },
   "devDependencies": {
     "@nuxtjs/proxy": "^2.1.0",
