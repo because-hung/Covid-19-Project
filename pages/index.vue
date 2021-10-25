@@ -98,7 +98,7 @@ export default {
           "https://corona.lmao.ninja/v3/covid-19/all"
         )
         self.gobalData = res
-        console.log("gobalData: ", self.gobalData)
+        // console.log("gobalData: ", self.gobalData)
       } catch (error) {
         console.log("error: ", error)
       }
@@ -111,7 +111,7 @@ export default {
         )
         self.twData = res
         self.TWflag = res.countryInfo.flag
-        console.log("twData: ", self.twData)
+        // console.log("twData: ", self.twData)
       } catch (error) {
         console.log("error: ", error)
       }

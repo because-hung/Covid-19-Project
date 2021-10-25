@@ -61,14 +61,14 @@ export default {
       try {
         const self = this
         const limited = '全部縣市'
-        // const limited = '台中市'
+       
         const res = await this.$axios.$get(`https://info-covid19-project.herokuapp.com/api/covidCountry?limited=${limited}`)
-        // const res = await this.$axios.$get(`http://localhost:3000/api/covidCountry?limited=${limited}`)
+        // const res = await this.$axios.$get(`http://localhost:3000/api/covidCountry?limited=${limited}`) //本地端
         const filterAry = res.data.filter(item => {  //抓取縣市全區總人數
           return item.a04 == '全區' 
         })
        const dataAry = Array.from(filterAry) //物件轉陣列
-        console.log("data: ", dataAry)
+        // console.log("data: ", dataAry)
         const forData = []
 
        filterAry.forEach((item)=>{
@@ -106,12 +106,12 @@ self.data.map((element) => {   //去掉境外移入 拿到本土人數
 self.TaiwanPlus = self.TaiwanplusData.reduce((acc, cur)=>{ //本土確診人數總和
   return parseInt(acc) + parseInt(cur)
 })
-console.log('data:', self.data)
-console.log('timecode:', self.timecode)
-console.log('plus:', self.plusData)
-console.log('TaiwanPlusTotal:', self.TaiwanplusData)
-console.log('TaiwanPlus:', self.TaiwanPlus)
-console.log('foreignPlus:', self.foreignPlus)
+// console.log('data:', self.data)
+// console.log('timecode:', self.timecode)
+// console.log('plus:', self.plusData)
+// console.log('TaiwanPlusTotal:', self.TaiwanplusData)
+// console.log('TaiwanPlus:', self.TaiwanPlus)
+// console.log('foreignPlus:', self.foreignPlus)
       } catch (error) {
         console.log('error: ', error)
       }

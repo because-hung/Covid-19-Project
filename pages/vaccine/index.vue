@@ -156,14 +156,14 @@ export default {
         const self = this
         const res = await this.$axios.$get(
           "https://info-covid19-project.herokuapp.com/api/covidVaccine")
-        // const res = await this.$axios.$get("http://localhost:3000/api/covidVaccine")
+        // const res = await this.$axios.$get("http://localhost:3000/api/covidVaccine")  //本地端
         self.countyTimecode = res.data[0].a01
-        console.log("time: ", self.countyTimecode) //抓取 最近的更新時間
+        // console.log("time: ", self.countyTimecode) //抓取 最近的更新時間
         const filteredData = res.data.filter(item => { 
           return item.a01 == self.countyTimecode  //抓取 最近的一筆資料
         })
         self.data = filteredData
-        console.log("data: ", self.data)
+        // console.log("data: ", self.data)
       } catch (error) {
         console.log("error: ", error)
       }
@@ -171,16 +171,13 @@ export default {
     async getCovidVaccineAll() {
       try {
         const self = this
-        // const res = await this.$axios.$get(
-        //   "https://blooming-basin-20592.herokuapp.com/api/covidVaccine"
-        // )
-        // const res = await this.$axios.$get("http://localhost:3000/api/covidVaccineAll")
+        // const res = await this.$axios.$get("http://localhost:3000/api/covidVaccineAll") //本地端
        const res = await this.$axios.$get(
           "https://info-covid19-project.herokuapp.com/api/covidVaccineAll")
-       console.log("Alldata: ", res)
+      //  console.log("Alldata: ", res)
         const popData = res.data
         self.percentTimecode = popData.pop().a02 //抓取 最近更新的時間
-        console.log('today:', self.percentTimecode)
+        // console.log('today:', self.percentTimecode)
          const filteredAllData = res.data.filter(item => {
           return item.a02 == self.percentTimecode   //抓取 最近的一筆資料
         })
@@ -189,8 +186,8 @@ export default {
         {
         self.totalShot = self.totalShot + parseInt(self.Alldata[i].a04) //加總疫苗總數量 要計算疫苗覆蓋率
         }
-          console.log('self.totalShot:', self.totalShot)
-        console.log('filterDone', self.Alldata)
+        //   console.log('self.totalShot:', self.totalShot)
+        // console.log('filterDone', self.Alldata)
       } catch (error) {
         console.log("error: ", error)
       }
