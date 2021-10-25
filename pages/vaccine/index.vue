@@ -174,8 +174,10 @@ export default {
         // const res = await this.$axios.$get(
         //   "https://blooming-basin-20592.herokuapp.com/api/covidVaccine"
         // )
-        const res = await this.$axios.$get("http://localhost:3000/api/covidVaccineAll")
-        console.log("Alldata: ", res)
+        // const res = await this.$axios.$get("http://localhost:3000/api/covidVaccineAll")
+       const res = await this.$axios.$get(
+          "https://git.heroku.com/info-covid19-project.herokuapp.com/api/covidVaccineAll")
+       console.log("Alldata: ", res)
         const popData = res.data
         self.percentTimecode = popData.pop().a02 //抓取 最近更新的時間
         console.log('today:', self.percentTimecode)
