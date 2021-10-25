@@ -155,7 +155,7 @@ export default {
       try {
         const self = this
         const res = await this.$axios.$get(
-          "https://git.heroku.com/info-covid19-project.herokuapp.com/api/covidVaccine")
+          "https://info-covid19-project.herokuapp.com/api/covidVaccine")
         // const res = await this.$axios.$get("http://localhost:3000/api/covidVaccine")
         self.countyTimecode = res.data[0].a01
         console.log("time: ", self.countyTimecode) //抓取 最近的更新時間
@@ -176,7 +176,7 @@ export default {
         // )
         // const res = await this.$axios.$get("http://localhost:3000/api/covidVaccineAll")
        const res = await this.$axios.$get(
-          "https://git.heroku.com/info-covid19-project.herokuapp.com/api/covidVaccineAll")
+          "https://info-covid19-project.herokuapp.com/api/covidVaccineAll")
        console.log("Alldata: ", res)
         const popData = res.data
         self.percentTimecode = popData.pop().a02 //抓取 最近更新的時間
