@@ -100,6 +100,7 @@
           moblieVaccineCard
           border-2 border-solid border-blue-700
           text-white
+          font-bold
  
         "
         v-for="(item, i) in data"
@@ -107,8 +108,8 @@
       >
      
         <ul class="moblieVaccineList p-8 blur">
-          <li class="text-4xl font-bold mb-4">縣市: {{ item.a02 }}</li>
-          <li class="mb-2 font-medium">
+          <li class="text-4xl font-bold mb-6">縣市: {{ item.a02 }}</li>
+          <li class="my-2 font-medium">
             <fa :icon="['fas', 'syringe']" />
             累積接種人次: {{ item.a05 }}人
             <div>
@@ -138,8 +139,7 @@
 </template>
 
 <script>
-// import axios from 'axios'
-// import res from '../api/Covid.json'
+
 export default {
   data() {
     return {
@@ -236,8 +236,8 @@ background-image: url(../../assets/country03.jpg);
   }
 }
 .moblieVaccineCard{
-  background-image: url(../../assets/country01.jpg);
-     background-size: contain;
+  background-image: url(../../assets/mobile-country.jpg);
+     background-size: cover;
    
 
 }

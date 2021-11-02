@@ -43,8 +43,7 @@
 </template>
 
 <script>
-// import axios from 'axios'
-// import res from '../api/Covid.json'
+
 export default {
     data() {
         return {
