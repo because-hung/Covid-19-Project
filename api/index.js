@@ -17,7 +17,7 @@ router.use((req, res, next) =>{
   next()
 })
 
-router.get('/covidVaccine',(req, res) =>{
+router.get('/covidVaccine',(req, res) =>{  //要資料到後端  後端在吐到前端
   const url = encodeURI('https://covid-19.nchc.org.tw/api/covid19?CK=covid-19@nchc.org.tw&querydata=2001')
   fetch(url)
   .then(response => response.json())

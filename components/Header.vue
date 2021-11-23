@@ -19,7 +19,7 @@
         </div>
 
         <!--pc layout 電腦版型-->
-        <div class="tabs mt-3 ml-4 mr-4 sm:mr-0 text-2xl hidden sm:flex">  <!--連結按鈕-->
+        <div class="tabs mt-3 ml-4 mr-4 sm:mr-0 text-2xl hidden sm:flex" >  <!--連結按鈕-->
           <nuxt-link to="./"
             ><button
               class="
@@ -31,6 +31,8 @@
                 sm:rounded-t-xl
                 font-bold
                 border-white
+                hover:bg-gray-300
+                hover:text-white
               "
             >
               全球疫情狀況
@@ -48,6 +50,8 @@
                 sm:mt-0 sm:rounded-t-xl sm:mx-3
                 font-bold
                 border-white
+                hover:bg-gray-300
+                hover:text-white
               "
             >
               台灣縣市狀況
@@ -66,6 +70,8 @@
                 mr-3
                 font-bold
                 border-white
+                hover:bg-gray-300
+                hover:text-white
               "
             >
               疫苗施打狀況
@@ -92,7 +98,7 @@
           >
             <nuxt-link to="./"
               ><button
-                class=" py-6 my-3 px-16 font-bold border-white border-2 rounded-lg blur"
+                class="py-6 my-3 px-16 font-bold border-white border-2 rounded-lg blur "
                 @click="open = false"
               >
                 全球疫情狀況
@@ -100,7 +106,7 @@
             >
             <nuxt-link to="./taiwan"
               ><button
-                class=" py-6 my-3 px-16 font-bold border-white border-2 rounded-lg blur"
+                class="py-6 my-3 px-16 font-bold border-white border-2 rounded-lg blur "
                 @click="open = false"
               >
                 台灣縣市狀況
@@ -108,7 +114,7 @@
             >
             <nuxt-link to="./vaccine"
               ><button
-                class=" py-6 my-3 px-16 font-bold border-white border-2 rounded-lg blur"
+                class="py-6 my-3 px-16 font-bold border-white border-2 rounded-lg blur "
                 @click="open = false"
               >
                 疫苗施打狀況
@@ -159,6 +165,4 @@ export default {
   .buttonActive{
       color: white;
   }
-
-
 </style>
