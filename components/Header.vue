@@ -98,7 +98,7 @@
           >
             <nuxt-link to="./"
               ><button
-                class="py-6 my-3 px-16 font-bold border-white border-2 rounded-lg blur "
+                class="py-6 my-3 px-16 font-bold border-white border-2 rounded-lg blur"
                 @click="open = false"
               >
                 全球疫情狀況
@@ -106,7 +106,7 @@
             >
             <nuxt-link to="./taiwan"
               ><button
-                class="py-6 my-3 px-16 font-bold border-white border-2 rounded-lg blur "
+                class="py-6 my-3 px-16 font-bold border-white border-2 rounded-lg blur"
                 @click="open = false"
               >
                 台灣縣市狀況
@@ -114,7 +114,7 @@
             >
             <nuxt-link to="./vaccine"
               ><button
-                class="py-6 my-3 px-16 font-bold border-white border-2 rounded-lg blur "
+                class="py-6 my-3 px-16 font-bold border-white border-2 rounded-lg blur"
                 @click="open = false"
               >
                 疫苗施打狀況
