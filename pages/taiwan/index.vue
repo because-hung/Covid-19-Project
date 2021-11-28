@@ -200,7 +200,7 @@ button {
   background: #ff2d2d;
 }
 .CountryCard {
-  background-image: url(../../assets/country02.jpg);
+  background-image: url(../../assets/Person-city.jpg);
   background-size: cover;
   background-position: center center;
 }

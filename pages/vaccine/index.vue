@@ -46,14 +46,14 @@
       "
     >
       <div
-        class="AllVaccineCard text-center shadow-md border-t-2 border-gray-300"
+        class="AllVaccineCard text-center shadow-md border-t-2 border-gray-300 "
         v-for="(item, i) in Alldata"
         :key="i"
       >
-        <h2 class="text-bold text-xl mt-4">
-          <fa :icon="['fas', 'syringe']" /> {{ item.a03 }}
+        <h2 class="text-bold text-xl mt-4 wordBreak" >
+          <fa :icon="['fas', 'syringe']"  /> {{ item.a03 }}
         </h2>
-        <h4 class="text-5xl text-yellow-500 mt-6 mb-4">
+        <h4 class="text-4xl text-yellow-500 mt-6 mb-4 ">
           {{ item.a06 }} <span class="text-3xl">人</span>
         </h4>
       </div>
@@ -61,9 +61,9 @@
 
     <!--pc layout  電腦版型-->
     <div class="section pcLayout hidden sm:block">
-      <div class="title bg-gray-200 text-right py-4 pr-8 font-bold">
+      <div class="title text-right py-4 pr-8 font-bold">
         <h2>(滑鼠滑到想看的地區上 即可跑出地區相關資訊)</h2>
-        <h2>更新時間: {{ countyTimecode }}</h2>
+        <h2>更新時間: {{ cityTimecode }}</h2>
       </div>
       <div
         class="
@@ -92,33 +92,21 @@
           :key="i"
         >
           <h2
-            class="my-20 py-4 CoverPage text-5xl text-white font-bold mx-auto"
+            class="my-14 py-4 CoverPage text-5xl text-white font-bold mx-auto"
           >
             {{ item.a02 }}
           </h2>
-          <ul class="VaccineList bg-white p-8">
-            <li class="text-2xl font-medium mb-4">縣市: {{ item.a02 }}</li>
-            <li class="mb-2 font-medium">
-              <fa :icon="['fas', 'syringe']" />
-              累積接種人次: {{ item.a05 }}人
-              <div>
-                <h6 class="categories">az: {{ item.a11 }}人</h6>
-                <h6 class="categories">moderna: {{ item.a17 }}人</h6>
-              </div>
+          <ul class="VaccineList bg-white p-8 ">
+        <li class="text-4xl font-bold mb-10">縣市: {{ item.a02 }}</li>
+            <li class="my-2 font-medium text-xl"><div class="div">
+            <fa :icon="['fas', 'syringe']" /> 第一劑
+            </div>
+          <div class="inline-block"> 疫苗覆蓋率: <strong class="text-red-600 text-2xl">{{ item.a04 }}%</strong></div>
             </li>
-            <li class="mb-2 font-medium">
-              <fa :icon="['fas', 'syringe']" /> 疫苗覆蓋率 (%): {{ item.a06 }}%
-              <div class="categories">
-                <h6>az: {{ item.a12 }}%</h6>
-                <h6>moderna: {{ item.a18 }}%</h6>
-              </div>
-            </li>
-            <li>
-              <fa :icon="['fas', 'syringe']" /> 剩餘量 (%): {{ item.a09 }}%
-              <div class="categories">
-                <h6>az: {{ item.a15 }}%</h6>
-                <h6>moderna: {{ item.a21 }}%</h6>
-              </div>
+             <li class="my-2 mt-4 font-medium text-xl"><div class="div">
+            <fa :icon="['fas', 'syringe']" /> 第二劑
+            </div>
+          <div class="inline-block"> 疫苗覆蓋率: <strong class="text-red-600 text-2xl">{{ item.a05 }}%</strong></div>
             </li>
           </ul>
         </div>
@@ -127,6 +115,9 @@
     <!--mobile layout  手機板型-->
 
     <div class="section mobileLayout sm:hidden">
+         <div class="text-center py-4 font-bold">
+        <h2>更新時間: {{ cityTimecode }}</h2>
+      </div>
       <div
         class="
           content
@@ -152,28 +143,16 @@
           :key="i"
         >
           <ul class="moblieVaccineList p-8 blur">
-            <li class="text-4xl font-bold mb-6">縣市: {{ item.a02 }}</li>
-            <li class="my-2 font-medium">
-              <fa :icon="['fas', 'syringe']" />
-              累積接種人次: {{ item.a05 }}人
-              <div>
-                <h6 class="categories">az: {{ item.a11 }}人</h6>
-                <h6 class="categories">moderna: {{ item.a17 }}人</h6>
-              </div>
+            <li class="text-4xl font-bold mb-10">縣市: {{ item.a02 }}</li>
+            <li class="my-2 font-medium text-xl"><div class="div">
+            <fa :icon="['fas', 'syringe']" /> 第一劑
+            </div>
+          <div class="inline-block"> 疫苗覆蓋率: <strong class="text-2xl ml-1">{{ item.a04 }}%</strong></div>
             </li>
-            <li class="mb-2 font-medium">
-              <fa :icon="['fas', 'syringe']" /> 疫苗覆蓋率 (%): {{ item.a06 }}%
-              <div class="categories">
-                <h6>az: {{ item.a12 }}%</h6>
-                <h6>moderna: {{ item.a18 }}%</h6>
-              </div>
-            </li>
-            <li>
-              <fa :icon="['fas', 'syringe']" /> 剩餘量 (%): {{ item.a09 }}%
-              <div class="categories">
-                <h6>az: {{ item.a15 }}%</h6>
-                <h6>moderna: {{ item.a21 }}%</h6>
-              </div>
+             <li class="my-2 mt-4 font-medium text-xl"><div class="div">
+            <fa :icon="['fas', 'syringe']" /> 第二劑
+            </div>
+          <div class="inline-block"> 疫苗覆蓋率: <strong class="text-2xl ml-1">{{ item.a05 }}%</strong></div>
             </li>
           </ul>
         </div>
@@ -187,7 +166,7 @@ export default {
   data() {
     return {
       data: [],
-      countyTimecode: "", //縣市疫苗情況  更新的時間
+      cityTimecode: "", //縣市疫苗情況  更新的時間
       Alldata: [],
       percentTimecode: "", //疫苗覆蓋率  更新的時間
       totalShot: 0,
@@ -201,13 +180,13 @@ export default {
           "https://info-covid19-project.herokuapp.com/api/covidVaccine"
         )
         // const res = await this.$axios.$get("http://localhost:3000/api/covidVaccine")  //本地端
-        self.countyTimecode = res.data[0].a01
-        // console.log("time: ", self.countyTimecode) //抓取 最近的更新時間
+        self.cityTimecode = res.data[0].a01
+        // console.log("time: ", self.cityTimecode) //抓取 最近的更新時間
         const filteredData = res.data.filter(item => {
-          return item.a01 == self.countyTimecode //抓取 最近的一筆資料
+          return item.a01 == self.cityTimecode && item.a03 == '總計' //抓取 最近的所有資料
         })
         self.data = filteredData
-        // console.log("data: ", self.data)
+        // console.log("data: ", self.data) 
       } catch (error) {
         console.log("error: ", error)
       }
@@ -259,7 +238,7 @@ button {
   z-index: -1;
 }
 .VaccineCard {
-  background-image: url(../../assets/country03.jpg);
+  background-image: url(../../assets/Vaccine-city.jpg);
   background-size: cover;
   background-position: center center;
 }
@@ -280,10 +259,13 @@ button {
   }
 }
 .moblieVaccineCard {
-  background-image: url(../../assets/mobile-country.jpg);
+  background-image: url(../../assets/mobile-city.jpg);
   background-size: cover;
 }
 .blur {
   backdrop-filter: blur(2px); //毛玻璃特效
+}
+.wordBreak{
+  word-break:break-all;
 }
 </style>

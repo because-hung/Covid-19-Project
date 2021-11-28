@@ -156,7 +156,7 @@ export default {
 <style lang="scss">
  
   .active{
-     background-image: url(../assets/country05.jpg);
+     background-image: url(../assets/hamMenu.jpg);
 
   }
   .blur{
