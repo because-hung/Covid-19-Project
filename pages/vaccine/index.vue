@@ -61,7 +61,7 @@
 
     <!--pc layout  電腦版型-->
     <div class="section pcLayout hidden sm:block">
-      <div class="title text-right py-4 pr-8 font-bold">
+      <div class="title text-right py-4 mr-8 font-bold">
         <h2>(滑鼠滑到想看的地區上 即可跑出地區相關資訊)</h2>
         <h2>更新時間: {{ cityTimecode }}</h2>
       </div>
@@ -98,12 +98,12 @@
           </h2>
           <ul class="VaccineList bg-white p-8 ">
         <li class="text-4xl font-bold mb-10">縣市: {{ item.a02 }}</li>
-            <li class="my-2 font-medium text-xl"><div class="div">
+            <li class="my-2 font-medium text-xl"><div >
             <fa :icon="['fas', 'syringe']" /> 第一劑
             </div>
           <div class="inline-block"> 疫苗覆蓋率: <strong class="text-red-600 text-2xl">{{ item.a04 }}%</strong></div>
             </li>
-             <li class="my-2 mt-4 font-medium text-xl"><div class="div">
+             <li class="my-2 mt-4 font-medium text-xl"><div >
             <fa :icon="['fas', 'syringe']" /> 第二劑
             </div>
           <div class="inline-block"> 疫苗覆蓋率: <strong class="text-red-600 text-2xl">{{ item.a05 }}%</strong></div>
@@ -195,9 +195,9 @@ export default {
       try {
         const self = this
         // const res = await this.$axios.$get("http://localhost:3000/api/covidVaccineAll") //本地端
-        const res = await this.$axios.$get(
+         const res = await this.$axios.$get(
           "https://info-covid19-project.herokuapp.com/api/covidVaccineAll"
-        )
+         )
         //  console.log("Alldata: ", res)
         const popData = res.data
         self.percentTimecode = popData.pop().a02 //抓取 最近更新的時間
@@ -253,6 +253,7 @@ button {
   .VaccineList {
     //hover 的時候  會橫移一個區塊顯示資訊
     z-index: 2;
+    position: absolute;
     transform: translate(-30px, -30px);
     transition: 0.5s ease;
     border: 3px skyblue solid;
