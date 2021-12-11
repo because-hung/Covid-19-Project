@@ -71,7 +71,7 @@
           grid grid-rows-1 grid-cols-1
           sm:grid-cols-2
           ld:grid-cols-3
-          lg:grid-cols-4
+          xl:grid-cols-4
           gap-12
           ld:gap-20
           py-8
@@ -254,7 +254,7 @@ button {
     //hover 的時候  會橫移一個區塊顯示資訊
     z-index: 2;
     position: absolute;
-    transform: translate(-30px, -30px);
+    transform: translate(-35px, -30px);
     transition: 0.5s ease;
     border: 3px skyblue solid;
   }

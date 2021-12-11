@@ -12,22 +12,22 @@
           md:text-left md:flex
           justify-between
           px-4
-          md:px-8
+          md:px-2
         "
       >
         <h2 class="mb-6 md:mb-0">
-          <span class="pb-1 font-bold text-3xl border-b-4 border-yellow-500"
+          <span class="pb-1 font-bold text-3xl border-b-4 border-yellow-500 "
             >台灣各地區總確診人數</span
           >
         </h2>
         <div class="totalplus sm:flex justify-evenly sm:mt-0">
-          <h2 class="mt-6 sm:mt-0 mb-2 ld:mb-0 font-bold text-3xl ld:pr-6">
+          <h2 class="mt-6 sm:mt-0 mb-2 ld:mb-0 font-bold text-3xl lg:pr-6 md:mr-6">
             境外人數+
-            <span class="text-red-500 text-5xl"> {{ foreignPlus }}</span>
+            <span class="text-red-500 text-4xl"> {{ foreignPlus }}</span>
           </h2>
-          <h2 class="mt-6 sm:mt-0 font-bold text-3xl ld:pr-6">
+          <h2 class="mt-6 sm:mt-0 font-bold text-3xl ld:pr-6 " >
             本土人數+
-            <span class="text-red-500 text-5xl"> {{ TaiwanPlus }}</span>
+            <span class="text-red-500 text-4xl"> {{ TaiwanPlus }}</span>
           </h2>
         </div>
       </div>
@@ -39,7 +39,7 @@
         grid grid-cols-1
         sm:grid-cols-2
         ld:grid-cols-3
-        lg:grid-cols-4
+        xl:grid-cols-4
         gap-x-20 gap-y-10
         bg-gray-200
         px-8
@@ -75,7 +75,7 @@
         <!--有增加確診人數 title就會變顏色-->
 
         <div class="peopleNum justify-center">
-          <h2 class="Num text-5xl text-blue-700 my-4 font-bold opacity-100">
+          <h2 class="Num text-5xl text-blue-700 my-8 ld:my-4 font-bold opacity-100">
             {{ item.a06 }}
           </h2>
           <h3
@@ -86,6 +86,7 @@
               ld:ml-0 ld:text-4xl
               text-red-700
               font-mono
+              mt-1
             "
             v-if="plusData[i]"
           >
