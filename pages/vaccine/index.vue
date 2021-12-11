@@ -62,7 +62,8 @@
     <!--pc layout  電腦版型-->
     <div class="section pcLayout hidden sm:block">
       <div class="title text-right py-4 mr-8 font-bold">
-        <h2>(滑鼠滑到想看的地區上 即可跑出地區相關資訊)</h2>
+        <h2>滑鼠滑到想看的地區上即可跑出資訊</h2>
+        <h2>(使用平板的話 請手指到想看的地區上長按)</h2>
         <h2>更新時間: {{ cityTimecode }}</h2>
       </div>
       <div
