@@ -96,7 +96,7 @@
           >
             {{ item.a02 }}
           </h2>
-          <ul class="VaccineList bg-white p-8 ">
+          <ul class="VaccineList bg-white p-8 md:px-14 lg:px-8">
         <li class="text-4xl font-bold mb-10">縣市: {{ item.a02 }}</li>
             <li class="my-2 font-medium text-xl"><div >
             <fa :icon="['fas', 'syringe']" /> 第一劑
