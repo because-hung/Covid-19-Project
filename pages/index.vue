@@ -3,7 +3,7 @@
     <h4 class="font-bold text-center sm:text-right pt-6 px-4 mr-6 ld:mr-10">
       時間: {{ this.todayTime }}
     </h4>
-    <div class="GobalTitle flex justify-center sm:justify-start px-8 py-4">
+    <div class="gobalTitle flex justify-center sm:justify-start px-8 py-4">
       <h2
         class="
           border-b-4 border-red-700
@@ -19,7 +19,7 @@
     </div>
     <div
       class="
-        GobalCardGroup
+        gobalCardGroup
         grid grid-rows-1 grid-cols-1
         sm:grid-cols-2
         ld:grid-cols-4
@@ -128,7 +128,7 @@
     >
       <div class="card border-2 bg-white p-8 font-bold">
         <h2 class="text-2xl text-center md:text-left">
-          {{ this.twData.todayCases }}
+          {{ this.TWData.todayCases }}
         </h2>
         <h4
           class="
@@ -148,7 +148,7 @@
       </div>
       <div class="card border-2 bg-white p-8 font-bold">
         <h2 class="text-2xl text-center md:text-left">
-          {{ this.twData.todayDeaths }}
+          {{ this.TWData.todayDeaths }}
         </h2>
         <h4
           class="
@@ -168,7 +168,7 @@
       </div>
       <div class="card border-2 bg-white p-8 font-bold">
         <h2 class="text-2xl text-center md:text-left">
-          {{ this.twData.cases }}
+          {{ this.TWData.cases }}
         </h2>
         <h4
           class="
@@ -185,7 +185,7 @@
       </div>
       <div class="card border-2 bg-white p-8 font-bold">
         <h2 class="text-2xl text-center md:text-left">
-          {{ this.twData.deaths }}
+          {{ this.TWData.deaths }}
         </h2>
         <h4
           class="
@@ -207,10 +207,10 @@
 export default {
   data() {
     return {
-      gobalData: [], //世界數據
-      twData: [], //台灣數據
-      todayTime: "", //現在時間
-      TWflag: "", //台灣國旗
+      gobalData: [], // 全世界數據
+      TWData: [], // 台灣數據
+      todayTime: "", // 現在時間
+      TWflag: "", // 台灣國旗
     }
   },
   methods: {
@@ -232,15 +232,15 @@ export default {
         const res = await this.$axios.$get(
           "https://corona.lmao.ninja/v2/countries/TW?fbclid=IwAR2JF5QVCwmjbNJM4QVIuk8gTFgRK4MlYa1uDyHDZ1ctzgvSOJXkhjJGpCo"
         )
-        self.twData = res
+        self.TWData = res
         self.TWflag = res.countryInfo.flag
-        // console.log("twData: ", self.twData)
+        // console.log("TWData: ", self.TWData)
       } catch (error) {
         console.log("error: ", error)
       }
     },
     getTime() {
-      //抓現在的時間
+      // 抓現在的時間
       const self = this
       const timeNow = Date.now()
       self.todayTime = new Date(timeNow)
@@ -257,7 +257,7 @@ export default {
 .TWflag {
   background-size: cover;
 }
-.GobalTitle {
+.gobalTitle {
   word-break: keep-all;
 }
 </style>
