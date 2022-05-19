@@ -1,69 +1,21 @@
-# Covid-19
+*** 作品介紹 / 使用技術 ***
 
-## Build Setup
+這是我的作品，Covid-19 疫情資訊整合頁，作品的特色是仿 google 網頁的介面樣式，這個作品的發想是想要做一些能對社會有幫助的網頁，後來發現政府疫情資訊網的資訊太多太繁雜，可能導致民眾不容易觀看，所以從中抓出幾個重點，整合出資訊明瞭的疫情整合資訊頁，使得民眾更方便閱讀資訊，更能了解疫情跟疫苗的狀況，另一方面是想整合新學到的技術，做出新的作品
 
-```bash
-# install dependencies
-$ npm install
+skill: Nuxt / Tailwind.css / async.await / 第三方api / 部屬 Heroku
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+async.await call 政府的 api 回來，整合 api 資料用操作 array 的方法整理出想要的資料，呈現於畫面，使用新學到的技術 Nuxt 在作品上和希望透過 SSR + SEO 讓更多人知道這個網站
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+*** 頁面介紹 ***
 
-# generate static project
-$ npm run generate
-```
+全球疫情狀況 (首頁)
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+呈現全球以及台灣的每日確診人數以及死亡人數，累積確診人數以及死亡人數
 
-## Special Directories
+台灣縣市狀況
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
+呈現台灣各縣市累積總確診人數以及每日增加人數
 
-### `assets`
+疫苗施打狀況
 
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
-
-### `components`
-
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
-
-
-### `pages`
-
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+呈現台灣各種疫苗總累積接種人數以及疫苗總覆蓋率第一劑和第二劑，台灣各縣市疫苗施打覆蓋率第一劑和第二劑
