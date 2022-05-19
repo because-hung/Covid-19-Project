@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto pt-5 bg-gray-200">
-    <h4 class="text-center ld:text-right ld:pr-10 font-bold mb-2">
+    <h4 class="text-center ld:text-right ld:pr-10 font-bold">
       更新時間: {{ percentTimeCode }}
     </h4>
     <div
@@ -10,31 +10,36 @@
         text-center
         sm:text-left sm:flex sm:justify-between
         font-bold
-        pt-4
-        mb-8
+        mb-6
         px-4
         ld:px-8
       "
     >
-      <h2 class="my-8 sm:mb-0 px-4">
+      <h2 class="my-6 sm:mb-0 px-4 self-center">
         <span class="pb-1 font-bold text-3xl border-b-4 border-blue-500"
           >疫苗累積接種人數</span
         >
       </h2>
       <!-- 計算疫苗覆蓋率 -->
-      <div class="text-bold text-2xl md:flex items-center">
+      <div class="text-bold text-2xl md:flex items-center mt-6">
         <fa :icon="['fas', 'syringe']" /> 疫苗覆蓋率:
-        <div class="shotGroup ml-4 mt-3 md:mt-0">
-          <p class="text-3xl text-blue-500">
+        <div class="shotGroup ml-4 md:mt-0 mt-5">
+          <p class="text-3xl text-blue-500 mx-3 mt-3 md:mt-0">
             第一劑:
             <span class="text-4xl text-red-500"
               >{{ totalShotPercent.a04 }} %</span
             >
           </p>
-          <p class="text-3xl text-blue-500 mt-3">
+          <p class="text-3xl text-blue-500 mx-3 mt-3 md:mt-0">
             第二劑:
             <span class="text-4xl text-red-500"
               >{{ totalShotPercent.a05 }} %</span
+            >
+          </p>
+           <p class="text-3xl text-blue-500 mx-3 mt-3 md:mt-0">
+            第三劑:
+            <span class="text-4xl text-red-500"
+              >{{ totalShotPercent.a07 }} %</span
             >
           </p>
         </div>
@@ -84,7 +89,7 @@
           xl:grid-cols-4
           gap-12
           ld:gap-20
-          py-8
+          py-10
           px-10
           ld:px-16
           bg-gray-200
@@ -102,11 +107,11 @@
           :key="i"
         >
           <h2
-            class="my-14 py-4 coverPage text-5xl text-white font-bold mx-auto"
+            class="my-14 py-8 coverPage text-5xl text-white font-bold mx-auto"
           >
             {{ item.a02 }}
           </h2>
-          <ul class="vaccineList bg-white p-8 md:px-14 lg:px-8">
+          <ul class="vaccineList bg-white p-8 md:px-12 lg:px-8">
             <li class="text-4xl font-bold mb-10">縣市: {{ item.a02 }}</li>
             <li class="my-2 font-medium text-xl">
               <div><fa :icon="['fas', 'syringe']" /> 第一劑</div>
@@ -120,6 +125,13 @@
               <div class="inline-block">
                 疫苗覆蓋率:
                 <strong class="text-red-600 text-2xl">{{ item.a05 }}%</strong>
+              </div>
+            </li>
+             <li class="my-2 mt-4 font-medium text-xl">
+              <div><fa :icon="['fas', 'syringe']" /> 第三劑</div>
+              <div class="inline-block">
+                疫苗覆蓋率:
+                <strong class="text-red-600 text-2xl">{{ item.a07 }}%</strong>
               </div>
             </li>
           </ul>
@@ -172,6 +184,13 @@
                 <strong class="text-2xl ml-1">{{ item.a05 }}%</strong>
               </div>
             </li>
+            <li class="my-2 mt-4 font-medium text-xl">
+              <fa :icon="['fas', 'syringe']" /> 第三劑
+              <div class="inline-block">
+                疫苗覆蓋率:
+                <strong class="text-2xl ml-1">{{ item.a07 }}%</strong>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
@@ -195,19 +214,17 @@ export default {
       try {
         const self = this
         const res = await this.$axios.$get(
-          "http://localhost:3000/api/covidVaccine"
+          "https://info-covid19-project.herokuapp.com/api/covidVaccine"
         )
         // const res = await this.$axios.$get("http://localhost:3000/api/covidVaccine")  // 本地端
-        // https://info-covid19-project.herokuapp.com/api/covidVaccine // deploy
+        // "https://info-covid19-project.herokuapp.com/api/covidVaccine" // deploy
         const lengthOfData = res.data.length - 1
-        self.cityTimeCode = res.data[lengthOfData].a01
-        // console.log("time: ", self.cityTimeCode) // 抓取最近的更新時間
-        const filteredData = res.data.filter(item => {
-          return item.a01 == self.cityTimeCode && item.a03 == "總計" // 抓取最近的所有資料
+        self.cityTimeCode = res.data[lengthOfData].a01 // 抓取最近的更新時間
+        const vaccineData = res.data.filter(item => {
+          return item.a01 === self.cityTimeCode && item.a03 === "總計" // 抓取最近的所有資料
         })
-        self.cityData = filteredData
-        self.totalShotPercent = filteredData.pop()
-        // console.log("data: ", self.cityData)
+        self.cityData = vaccineData
+        self.totalShotPercent = vaccineData.reverse().pop()
       } catch (error) {
         console.log("error: ", error)
       }
@@ -218,14 +235,12 @@ export default {
         // const res = await this.$axios.$get("http://localhost:3000/api/covidVaccineAll") // 本地端
         // "https://info-covid19-project.herokuapp.com/api/covidVaccineAll" // deploy
         const res = await this.$axios.$get(
-          "http://localhost:3000/api/covidVaccineAll"
+          "https://info-covid19-project.herokuapp.com/api/covidVaccineAll"
         )
-        //  console.log("totalShotData: ", res)
         const popData = res.data
         self.percentTimeCode = popData.pop().a02 // 抓取最近更新的時間
-        // console.log('today:', self.percentTimeCode)
         const filteredTotalShotData = res.data.filter(item => {
-          return item.a02 == self.percentTimeCode // 抓取最近的一筆資料
+          return item.a02 === self.percentTimeCode // 抓取最近的一筆資料
         })
         self.totalShotData = filteredTotalShotData
       } catch (error) {
