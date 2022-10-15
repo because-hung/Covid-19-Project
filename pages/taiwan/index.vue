@@ -1,5 +1,6 @@
 <template>
   <div>
+    <loading :active.sync="isLoading"></loading>
     <div class="TaiwanTitle justify-between font-bold py-4 bg-gray-200 px-4">
       <div
         class="header flex flex-col items-center md:flex-row md:justify-between"
@@ -125,10 +126,12 @@ export default {
       TWComfirmedCaseData: [], // 本土確診人數的Data (未含境外移入 做本土reduce 總和計算)
       TWComfirmedPlus: 0, // 本土確診人數的總和
       foreignComfirmedPlus: 0, // 境外確診人數的總和
+      isLoading: false
     }
   },
   methods: {
     async getCovidCity() {
+      this.isLoading = true;
       try {
         const self = this
         const limited = "全部縣市"
@@ -142,8 +145,9 @@ export default {
           // 抓取縣市全區總人數
           return item.a04 === "全區"
         })
+        console.log(filterAry)
         
-        self.timeCode = filterAry[0].a02 // 抓更新的時間
+        self.timeCode = filterAry[23].a02 // 抓更新的時間
         const cityNameData = []
         filterAry.forEach(item => {
           return cityNameData.push(item.a03) // 抓取縣市名稱 之後要做比對過濾用
@@ -158,7 +162,7 @@ export default {
         })
         self.data = cityData
         self.getConfirmCases()
-
+        this.isLoading = false;
       } catch (error) {
         console.log("error: ", error)
       }

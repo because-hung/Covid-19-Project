@@ -1,5 +1,6 @@
 <template>
   <div class="content bg-gray-200 pb-16">
+    <loading :active.sync="isLoading"></loading>
     <h4 class="font-bold text-center sm:text-right pt-6 px-4 mr-6 ld:mr-10">
       時間: {{ this.todayTime }}
     </h4>
@@ -211,31 +212,36 @@ export default {
       TWData: [], // 台灣數據
       todayTime: "", // 現在時間
       TWflag: "", // 台灣國旗
+      isLoading: false
     }
   },
   methods: {
     async getGobalData() {
+      this.isLoading = true;
       try {
         const self = this
         const res = await this.$axios.$get(
-          "https://corona.lmao.ninja/v3/covid-19/all"
+          "https://disease.sh/v3/covid-19/all"
         )
         self.gobalData = res
       } catch (error) {
         console.log("error: ", error)
       }
+      this.isLoading = false;
     },
     async getTWData() {
+      this.isLoading = true;
       try {
         const self = this
         const res = await this.$axios.$get(
-          "https://corona.lmao.ninja/v2/countries/TW?fbclid=IwAR2JF5QVCwmjbNJM4QVIuk8gTFgRK4MlYa1uDyHDZ1ctzgvSOJXkhjJGpCo"
+          "https://disease.sh/v3/covid-19/countries/TW"
         )
         self.TWData = res
         self.TWflag = res.countryInfo.flag
       } catch (error) {
         console.log("error: ", error)
       }
+      this.isLoading = false;
     },
     getTime() {
       // 抓現在的時間

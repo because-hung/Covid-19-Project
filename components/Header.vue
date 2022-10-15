@@ -123,7 +123,7 @@
                     rounded-lg
                     blur
                   "
-                  @click="open = false"
+                  @click="openMenu()"
                 >
                   全球疫情狀況
                 </button></nuxt-link
@@ -139,7 +139,7 @@
                     rounded-lg
                     blur
                   "
-                  @click="open = false"
+                  @click="openMenu()"
                 >
                   台灣縣市狀況
                 </button></nuxt-link
@@ -155,7 +155,7 @@
                     rounded-lg
                     blur
                   "
-                  @click="open = false"
+                  @click="openMenu()"
                 >
                   疫苗施打狀況
                 </button></nuxt-link

@@ -1,5 +1,6 @@
 <template>
   <div class="container mx-auto pt-5 bg-gray-200">
+    <loading :active.sync="isLoading"></loading>
     <h4 class="text-center ld:text-right ld:pr-10 font-bold">
       更新時間: {{ percentTimeCode }}
     </h4>
@@ -207,16 +208,18 @@ export default {
       totalShotData: [], // 疫苗總施打人數
       percentTimeCode: "", // 疫苗覆蓋率更新的時間
       totalShotPercent: [], // 總覆蓋率
+      isLoading: false
     }
   },
   methods: {
     async getCovidVaccine() {
+      this.isLoading = true;
       try {
         const self = this
         const res = await this.$axios.$get(
           "https://info-covid19-project.herokuapp.com/api/covidVaccine"
         )
-        // const res = await this.$axios.$get("http://localhost:3000/api/covidVaccine")  // 本地端
+        //  const res = await this.$axios.$get("http://localhost:3000/api/covidVaccine")  // 本地端
         // "https://info-covid19-project.herokuapp.com/api/covidVaccine" // deploy
         const lengthOfData = res.data.length - 1
         self.cityTimeCode = res.data[lengthOfData].a01 // 抓取最近的更新時間
@@ -228,8 +231,13 @@ export default {
       } catch (error) {
         console.log("error: ", error)
       }
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 1000)
+      
     },
     async getCovidVaccineAll() {
+      this.isLoading = true;
       try {
         const self = this
         // const res = await this.$axios.$get("http://localhost:3000/api/covidVaccineAll") // 本地端
@@ -246,6 +254,9 @@ export default {
       } catch (error) {
         console.log("error: ", error)
       }
+        setTimeout(() => {
+        this.isLoading = false;
+      }, 1000)
     },
   },
   created() {
