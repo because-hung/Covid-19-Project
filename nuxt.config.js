@@ -74,6 +74,7 @@ export default {
   // },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {   
+    assetsPublicPath: '/Covid-19-Project/',
   },
   serverMiddleware:[
     bodyParser.json(),
