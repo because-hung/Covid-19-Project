@@ -43,9 +43,6 @@ export default {
     '@nuxtjs/axios',
    
   ],
-  router: {
-      base: process.env.DEPLOY_ENV === 'GH_PAGES' ? '/Covid-19-Project/' : '/'
-  },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     'nuxt-fontawesome',
