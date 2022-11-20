@@ -43,8 +43,9 @@ export default {
     '@nuxtjs/axios',
    
   ],
+  target: 'static',
   router: {
-    base: '/'
+    base: '/Covid-Project'
   },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
