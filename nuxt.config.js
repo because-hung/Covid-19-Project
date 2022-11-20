@@ -43,7 +43,9 @@ export default {
     '@nuxtjs/axios',
    
   ],
- 
+  router: {
+    base: '/covidproject/'
+  },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     'nuxt-fontawesome',
