@@ -217,10 +217,10 @@ export default {
       try {
         const self = this
         const res = await this.$axios.$get(
-          "https://because-hung.github.io/Covid-19-Project/api/covidVaccine"
+          "https://because-hung.github.io/Covid-19-Project/vaccine/api/covidVaccine"
         )
         //  const res = await this.$axios.$get("http://localhost:3000/api/covidVaccine")  // 本地端
-        // "https://because-hung.github.io/Covid-19-Project/api/covidVaccine" // deploy
+        // "https://because-hung.github.io/Covid-19-Project/vaccine/api/covidVaccine" // deploy
         const lengthOfData = res.data.length - 1
         self.cityTimeCode = res.data[lengthOfData].a01 // 抓取最近的更新時間
         const vaccineData = res.data.filter(item => {
@@ -241,9 +241,9 @@ export default {
       try {
         const self = this
         // const res = await this.$axios.$get("http://localhost:3000/api/covidVaccineAll") // 本地端
-        // "https://because-hung.github.io/Covid-19-Project/api/covidVaccineAll" // deploy
+        // "https://because-hung.github.io/Covid-19-Project/vaccine/api/covidVaccineAll" // deploy
         const res = await this.$axios.$get(
-          "https://because-hung.github.io/Covid-19-Project/api/covidVaccineAll"
+          "https://because-hung.github.io/Covid-19-Project/vaccine/api/covidVaccineAll"
         )
         const popData = res.data
         self.percentTimeCode = popData.pop().a02 // 抓取最近更新的時間

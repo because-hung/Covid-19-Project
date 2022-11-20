@@ -3,7 +3,7 @@ const url = require("url");
 const fetch = require('node-fetch');
 const router = express.Router()
 
-// process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
 const app = express()
 router.use((req, res, next) =>{
