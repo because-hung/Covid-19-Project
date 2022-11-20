@@ -44,7 +44,7 @@ export default {
    
   ],
   router: {
-      base: process.env.DEPLOY_ENV === 'GH_PAGES' ? '/nuxt-landing-page/dist/' : '/'
+      base: process.env.DEPLOY_ENV === 'GH_PAGES' ? '/Covid-19-Project/' : '/'
   },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
