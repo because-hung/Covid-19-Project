@@ -44,7 +44,7 @@ export default {
    
   ],
   router: {
-    base: '/covidproject/'
+    base: '/'
   },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
