@@ -138,7 +138,7 @@ export default {
 
         const res = await this.$axios.$get(`/api/covidCountry?limited=${limited}`)
         // const res = await this.$axios.$get(`http://localhost:3000/api/covidCountry?limited=${limited}`) // 本地端
-        // `https://covid-project.onrender.com/api/covidCountry?limited=${limited}` // deploy
+        // `https://covid19-project.onrender.com/api/covidCountry?limited=${limited}` // deploy
         const filterAry = res.data.filter(item => {
           // 抓取縣市全區總人數
           return item.a04 === "全區"
