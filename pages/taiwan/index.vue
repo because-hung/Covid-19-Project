@@ -137,10 +137,10 @@ export default {
         const limited = "全部縣市"
 
         const res = await this.$axios.$get(
-          `https://covid-19-project.onrender.com/api/covidCountry?limited=${limited}`
+          `https://covid-project.onrender.com/api/covidCountry?limited=${limited}`
         )
         // const res = await this.$axios.$get(`http://localhost:3000/api/covidCountry?limited=${limited}`) // 本地端
-        // `https://covid-19-project.onrender.com/api/covidCountry?limited=${limited}` // deploy
+        // `https://covid-project.onrender.com/api/covidCountry?limited=${limited}` // deploy
         const filterAry = res.data.filter(item => {
           // 抓取縣市全區總人數
           return item.a04 === "全區"
