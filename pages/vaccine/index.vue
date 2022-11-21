@@ -216,9 +216,7 @@ export default {
       this.isLoading = true;
       try {
         const self = this
-        const res = await this.$axios.$get(
-          "https://covid-project.onrender.com/api/covidVaccine"
-        )
+        const res = await this.$axios.$get("/api/covidVaccine")
         //  const res = await this.$axios.$get("http://localhost:3000/api/covidVaccine")  // 本地端
         // "https://covid-project.onrender.com/api/covidVaccine" // deploy
         const lengthOfData = res.data.length - 1
@@ -234,7 +232,7 @@ export default {
       setTimeout(() => {
         this.isLoading = false;
       }, 1000)
-      
+
     },
     async getCovidVaccineAll() {
       this.isLoading = true;
@@ -242,9 +240,7 @@ export default {
         const self = this
         // const res = await this.$axios.$get("http://localhost:3000/api/covidVaccineAll") // 本地端
         // "https://covid-project.onrender.com/api/covidVaccineAll" // deploy
-        const res = await this.$axios.$get(
-          "https://covid-project.onrender.com/api/covidVaccineAll"
-        )
+        const res = await this.$axios.$get("/api/covidVaccineAll")
         const popData = res.data
         self.percentTimeCode = popData.pop().a02 // 抓取最近更新的時間
         const filteredTotalShotData = res.data.filter(item => {

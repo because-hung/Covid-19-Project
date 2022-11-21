@@ -136,9 +136,7 @@ export default {
         const self = this
         const limited = "全部縣市"
 
-        const res = await this.$axios.$get(
-          `https://covid-project.onrender.com/api/covidCountry?limited=${limited}`
-        )
+        const res = await this.$axios.$get(`/api/covidCountry?limited=${limited}`)
         // const res = await this.$axios.$get(`http://localhost:3000/api/covidCountry?limited=${limited}`) // 本地端
         // `https://covid-project.onrender.com/api/covidCountry?limited=${limited}` // deploy
         const filterAry = res.data.filter(item => {
@@ -146,7 +144,7 @@ export default {
           return item.a04 === "全區"
         })
         console.log(filterAry)
-        
+
         self.timeCode = filterAry[23].a02 // 抓更新的時間
         const cityNameData = []
         filterAry.forEach(item => {
