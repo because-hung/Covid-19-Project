@@ -90,7 +90,7 @@ export default {
     ]
   },
   axios: {
-    baseURL:   process.env.NODE_ENV === 'production' ? 'https://covid19-project.onrender.com' : ''
+    baseURL:   process.env.NODE_ENV === 'production' && process.client ?  window.location.origin : ''
 
   }
 }
