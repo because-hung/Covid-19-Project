@@ -143,8 +143,6 @@ export default {
           // 抓取縣市全區總人數
           return item.a04 === "全區"
         })
-        console.log(filterAry)
-
         self.timeCode = filterAry[23].a02 // 抓更新的時間
         const cityNameData = []
         filterAry.forEach(item => {
