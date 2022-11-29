@@ -24,7 +24,7 @@ https://flywing.site/
 
 * 首頁 - 呈現全球以及台灣的每日確診人數以及死亡人數，累積確診人數以及死亡人數
 
-![Covid-19](https://user-images.githubusercontent.com/63777618/204413300-d2d2d18e-f082-42b2-ade9-34091a4cceba.png)
+![Covid19](https://user-images.githubusercontent.com/63777618/204414061-4845109e-ed03-4cef-b5d8-24dc2477050d.png)
 
 
 <br />
