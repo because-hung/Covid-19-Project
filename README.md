@@ -19,6 +19,12 @@
 
 https://flywing.site/
 
+如上述網址沒有服務(租網路機器的服務，有時會有其他莫名原因發生而掛掉)，請點下列這個網址
+
+https://covid-project.onrender.com/
+
+由於免費部署伺服器的速度比較慢，所以call Api的速度的回應會比較慢，需要等一下
+
 <br />
 
 
