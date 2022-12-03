@@ -143,7 +143,7 @@ export default {
           // 抓取縣市全區總人數
           return item.a04 === "全區"
         })
-        self.timeCode = filterAry[23].a02 // 抓更新的時間
+        self.timeCode = filterAry[15].a02 // 抓更新的時間
         const cityNameData = []
         filterAry.forEach(item => {
           return cityNameData.push(item.a03) // 抓取縣市名稱 之後要做比對過濾用
