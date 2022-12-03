@@ -2,14 +2,16 @@ const express = require('express')
 const url = require("url");
 const fetch = require('node-fetch');
 const router = express.Router()
+const db = require('./db')
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
 const app = express()
+
 router.use((req, res, next) =>{
   const query = url.parse(req.url, true).query
-  req.query = query 
-  
+  req.query = query
+
   Object.setPrototypeOf(req, app.request)
   Object.setPrototypeOf(res, app.response)
   req.res = res
@@ -38,6 +40,39 @@ router.get('/covidVaccineAll',(req, res) =>{
   })
   .catch(err => {
     res.status(500).json({ success: false, data: []})
+  })
+})
+
+router.get('/covidCountry2', async (req, res) =>{
+  db.getConnection((err, connection) => {
+    if (err) throw err
+
+    console.log(connection.threadId)
+
+    connection.query(`select a02 as date, a03 as country, a05 as today_count, a06 as total from covid.Items where a02 = (select Max(a02) FROM covid.Items) and a04 = '全區';`, function (error, rows, fields) {
+      if (error) throw error;
+      console.log(rows);
+      // console.log('fields: ', fields);
+      // console.log('The solution is: ', rows[0]);
+      const newRows = rows.map(row => {
+        row.today_count = parseInt(row.today_count)
+        row.total = parseInt(row.total)
+        return row
+      })
+      connection.release()
+
+      if (newRows[0]) {
+        res.send({
+          status: 200,
+          items: newRows
+        });
+      } else {
+        res.send({
+          status: 200,
+          items: []
+        });
+      }
+    });
   })
 })
 
