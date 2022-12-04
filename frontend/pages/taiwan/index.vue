@@ -136,7 +136,7 @@ export default {
         const self = this
         const limited = "全部縣市"
 
-        const res = await this.$axios.$get(`/api/covidCountry2`)
+        const res = await this.$axios.$get(`/api/covidDailyInfo`)
         console.log('res: ', res);
         // const res = await this.$axios.$get(`http://localhost:3000/api/covidCountry?limited=${limited}`) // 本地端
         // `https://covid19-project.onrender.com/api/covidCountry?limited=${limited}` // deploy

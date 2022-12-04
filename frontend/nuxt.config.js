@@ -1,4 +1,4 @@
-const bodyParser = require('body-parser')
+// const bodyParser = require('body-parser')
 
 
 export default {
@@ -71,11 +71,11 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   },
-  serverMiddleware:[
-    bodyParser.json(),
-    bodyParser.urlencoded({extended: true}),
-    '~/api'
-  ],
+  // serverMiddleware:[
+  //   bodyParser.json(),
+  //   bodyParser.urlencoded({extended: true}),
+  //   '~/api'
+  // ],
   fontawesome: {
     // icon 的標籤使用 <fa>，這邊不設定就會依照 plugin 裡的設定<font-awesome-icon>
     component: 'fa',
@@ -90,7 +90,7 @@ export default {
     ]
   },
   axios: {
-    baseURL:   process.env.NODE_ENV === 'production' && process.client ?  window.location.origin : ''
+    baseURL:   process.env.NODE_ENV === 'production' && process.client ?  window.location.origin : 'http://localhost:3010'
 
   }
 }
