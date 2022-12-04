@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-const port = 3010;
+const port = 9886;
 app.use(express.json());
 
 app.get("/",  cors(), indexRouter);

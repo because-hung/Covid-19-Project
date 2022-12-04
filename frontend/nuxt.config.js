@@ -90,7 +90,8 @@ export default {
     ]
   },
   axios: {
-    baseURL:   process.env.NODE_ENV === 'production' && process.client ?  window.location.origin : 'http://localhost:3010'
+    baseURL: 'http://api.flywing.site'
+    // baseURL:   process.env.NODE_ENV === 'production' && process.client ?  window.location.origin : 'http://api.flywing.site'
 
   }
 }
