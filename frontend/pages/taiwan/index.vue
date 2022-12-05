@@ -87,13 +87,13 @@
           "
           :class="{ plusColor: comfirmedCaseData[i] }"
         >
-          {{ item.a03 }}
+          {{ item.country }}
         </h2>
         <!-- 有增加確診人數 title就會變顏色 -->
 
         <div class="comfirmedCasePlus justify-center">
           <h2 class="text-5xl text-blue-700 my-12 font-bold opacity-100">
-            {{ item.a06 }}
+            {{ item.total}}
           </h2>
           <h3
             class="
@@ -134,62 +134,34 @@ export default {
       this.isLoading = true;
       try {
         const self = this
-        const limited = "全部縣市"
-
         const res = await this.$axios.$get(`/api/covidDailyInfo`)
-        console.log('res: ', res);
-        // const res = await this.$axios.$get(`http://localhost:3000/api/covidCountry?limited=${limited}`) // 本地端
-        // `https://covid19-project.onrender.com/api/covidCountry?limited=${limited}` // deploy
-        const filterAry = res.data.filter(item => {
-          // 抓取縣市全區總人數
-          return item.a04 === "全區"
-        })
-        self.timeCode = filterAry[15].a02 // 抓更新的時間
-        const cityNameData = []
-        filterAry.forEach(item => {
-          return cityNameData.push(item.a03) // 抓取縣市名稱 之後要做比對過濾用
-        })
-        const cityNameAry = [...new Set(cityNameData)] // 轉陣列
-        const cityData = []
-        cityNameAry.forEach(item => {
-          let cityInfo = filterAry.find(element => {
-            return element.a03 === item && element.a02 === self.timeCode // 比對縣市抓出最近的一筆資料
-          })
-          cityData.push(cityInfo)
-        })
-        self.data = cityData
+        self.data = res.items
+        self.timeCode = res.items[0].date // 抓 timeCode
         self.getConfirmCases()
-        this.isLoading = false;
       } catch (error) {
         console.log("error: ", error)
       }
     },
     getConfirmCases() {
       const self = this
-      self.data.map(element => {
-        if (element.a02 === self.timeCode) {
-          // 抓取確診增加的人數 (為右下角紅色新增人數的數字)
-          self.comfirmedCaseData.push(element.a05)
-        } else {
-          self.comfirmedCaseData.push(0)
-        }
-      })
-
+      
       self.data.map(element => {
         // 去掉境外移入 拿到本土確診人數
-        if (element.a02 === self.timeCode && element.a03 !== "境外移入") {
-          self.TWComfirmedCaseData.push(element.a05)
-        } else if (element.a03 === "境外移入") {
-          self.foreignComfirmedPlus = element.a05 // 抓取境外移入確診人數
+        if (element.country !== "境外移入") {
+          self.TWComfirmedCaseData.push(element.today_count)
+        } else if (element.country === "境外移入") {
+          self.foreignComfirmedPlus = element.today_count // 抓取境外移入確診人數
         } else {
           self.TWComfirmedCaseData.push(0)
         }
+        self.comfirmedCaseData.push(element.today_count)  // 抓取確診增加的人數 (為右下角紅色新增人數的數字)
       })
 
       self.TWComfirmedPlus = self.TWComfirmedCaseData.reduce((acc, cur) => {
         // 本土確診人數總和
         return parseInt(acc) + parseInt(cur)
       })
+      this.isLoading = false;
     },
   },
   created() {
